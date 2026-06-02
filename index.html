@@ -1,607 +1,508 @@
 <!DOCTYPE html>
-<html lang="ru" class="scroll-smooth">
+<html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Casty — Подкаст студия в Москве</title>
-  <meta name="description" content="Записать подкаст — это просто! Студия записи аудио и видео подкастов в Москве. От записи до публикации. 2 зала на ArtPlay для съёмки на YouTube, VK, Shorts и Reels." />
-  <link rel="icon" href="https://static.tildacdn.com/tild3565-3239-4331-b763-666430343939/favicon.ico" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <script>
-    tailwind.config = {
-      theme: { extend: {
-        fontFamily: { sans: ['Stolz','Onest','system-ui','sans-serif'] },
-        colors: {
-          ink:'#224b45', brand:'#046c54', 'brand-dark':'#0a3d30',
-          mint:'#d4e1de', 'mint-2':'#c6d9d5', paper:'#f3f3f3', muted:'#667472',
-        },
-      }},
-    }
-  </script>
-  <style>
-    *{font-family:'Stolz','Onest',system-ui,sans-serif}
-    html,body{background:#f3f3f3}
-    /* marquee */
-    .marquee-track{display:flex;gap:2.5rem;animation:marquee 24s linear infinite;white-space:nowrap}
-    @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-    /* scroll reveal */
-    .reveal{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.19,1,.22,1),transform .8s cubic-bezier(.19,1,.22,1)}
-    .reveal.in{opacity:1;transform:none}
-    .reveal[data-d="1"]{transition-delay:.08s}.reveal[data-d="2"]{transition-delay:.16s}.reveal[data-d="3"]{transition-delay:.24s}
-    /* cards */
-    .card-hover{transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
-    .card-hover:hover{transform:translateY(-4px);box-shadow:0 20px 50px -20px rgba(34,75,69,.35)}
-    /* magnetic */
-    .magnetic{transition:transform .25s cubic-bezier(.19,1,.22,1)}
-    /* faq */
-    details summary{cursor:pointer;list-style:none}
-    details summary::-webkit-details-marker{display:none}
-    details[open] .faq-icon{transform:rotate(45deg)}
-    .faq-icon{transition:transform .25s ease}
-    /* slider */
-    .slider-track{display:flex;transition:transform .5s cubic-bezier(.19,1,.22,1)}
-    .slide{flex:0 0 100%;}
-    /* video play pulse */
-    .play-btn{transition:transform .25s ease}
-    .video-card:hover .play-btn{transform:scale(1.12)}
-    /* nav hide on scroll-down */
-    #nav{transition:transform .4s ease, opacity .4s ease}
-    #nav.hidden-nav{transform:translateY(-130%);opacity:0}
-    /* spin */
-    @keyframes spin-slow{to{transform:rotate(360deg)}}
-    .spin-slow{animation:spin-slow 14s linear infinite}
-    /* wave */
-    @keyframes wave{0%,100%{transform:rotate(0)}25%{transform:rotate(18deg)}75%{transform:rotate(-12deg)}}
-    .wave{display:inline-block;animation:wave 2s ease-in-out infinite;transform-origin:70% 70%}
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Casty — подкаст-студия в Москве</title>
+<meta name="description" content="Записать подкаст — это просто! Студия записи аудио и видео подкастов в Москве. От записи до публикации. 2 зала на ArtPlay."/>
+<link rel="icon" href="https://static.tildacdn.com/tild3565-3239-4331-b763-666430343939/favicon.ico"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700;800;900&family=Playfair+Display:ital,wght@1,500;1,600;0,700&family=Manrope:wght@400;500;600;700;800&family=Caveat:wght@600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --forest:#3f5a34;--forest-2:#35492c;--deep:#26331f;--olive:#4a6539;
+  --green:#0a8f5e;--cream:#efe9d8;--cream-2:#e6dcc4;
+  --orange:#e8743b;--orange-2:#ef8a55;--lime:#cfe06a;--ink:#1f2b17;--muted:#7c8a6e;
+  --r:22px;--ease:cubic-bezier(.19,1,.22,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Manrope',system-ui,sans-serif;background:var(--forest);color:var(--cream);overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.5}
+img{display:block;max-width:100%}a{color:inherit;text-decoration:none}
+.wrap{max-width:1240px;margin:0 auto;padding:0 28px}
+section{position:relative}
+.disp{font-family:'Unbounded',sans-serif;font-weight:900;letter-spacing:-.03em;line-height:.86;text-transform:lowercase}
+.serif{font-family:'Playfair Display',serif;font-style:italic}
+.hand{font-family:'Caveat',cursive;font-weight:700}
+.label{font-family:'Manrope';font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase}
+.dark{background:var(--forest);color:var(--cream)}.deep{background:var(--deep);color:var(--cream)}.light{background:var(--cream);color:var(--ink)}
+.eyebrow{font-family:'Manrope';font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--orange)}
+/* nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;transition:transform .45s var(--ease),background .3s}
+.nav.hide{transform:translateY(-110%)}.nav.scrolled{background:rgba(38,51,31,.88);backdrop-filter:blur(12px)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:18px 28px;max-width:1240px;margin:0 auto}
+.nav-logo img{height:26px;filter:brightness(0) invert(1)}
+.nav-links{display:flex;gap:26px;list-style:none}
+.nav-links a{position:relative;font-weight:600;font-size:14px;letter-spacing:.04em;opacity:.85;padding:4px 0}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-2px;height:2px;width:0;background:var(--orange);transition:width .25s var(--ease)}
+.nav-links a:hover{opacity:1}.nav-links a:hover::after{width:100%}
+.nav-right{display:flex;align-items:center;gap:12px}
+.soc{display:flex;gap:8px}
+.soc a{width:34px;height:34px;border-radius:50%;border:1.5px solid rgba(239,233,216,.3);display:flex;align-items:center;justify-content:center;transition:.2s}
+.soc a:hover{background:var(--cream);color:var(--forest);border-color:var(--cream);transform:translateY(-2px)}
+.burger{display:none;width:42px;height:42px;border-radius:50%;border:1.5px solid rgba(239,233,216,.3);background:transparent;cursor:pointer;align-items:center;justify-content:center}
+.burger span,.burger span::before,.burger span::after{content:"";display:block;width:18px;height:2px;background:var(--cream);position:relative;transition:.25s}
+.burger span::before{position:absolute;top:-6px}.burger span::after{position:absolute;top:6px}
+.burger.open span{background:transparent}.burger.open span::before{top:0;transform:rotate(45deg)}.burger.open span::after{top:0;transform:rotate(-45deg)}
+/* buttons */
+.btn{font-family:'Manrope';font-weight:700;font-size:13px;letter-spacing:.07em;text-transform:uppercase;padding:14px 26px;border-radius:999px;border:2px solid var(--orange);background:var(--orange);color:#fff;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:transform .2s var(--ease),background .25s,color .25s,border-color .25s;white-space:nowrap}
+.btn:hover{transform:translateY(-2px);background:transparent;color:var(--orange)}
+.btn.outline{background:transparent;color:var(--orange)}.btn.outline:hover{background:var(--orange);color:#fff}
+.btn.cream{background:var(--cream);border-color:var(--cream);color:var(--forest)}.btn.cream:hover{background:transparent;color:var(--cream)}
+.btn.ghost{background:transparent;border-color:rgba(239,233,216,.4);color:var(--cream)}.btn.ghost:hover{background:var(--cream);color:var(--forest);border-color:var(--cream)}
+.magnetic{transition:transform .25s var(--ease)}
+/* pills */
+.pill{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:6px 13px;border-radius:999px;background:var(--orange);color:#fff}
+.pill.out{background:transparent;border:1.5px solid currentColor;color:var(--orange)}
+.pill.olive{background:var(--olive);color:var(--cream)}
+/* reveal */
+.rv{opacity:0;transform:translateY(42px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.rv.in{opacity:1;transform:none}
+.rv[data-d="1"]{transition-delay:.09s}.rv[data-d="2"]{transition-delay:.18s}.rv[data-d="3"]{transition-delay:.27s}.rv[data-d="4"]{transition-delay:.36s}
+/* scribble draw-in */
+.scr{stroke:var(--orange);stroke-width:5;fill:none;stroke-linecap:round;stroke-dasharray:700;stroke-dashoffset:700;transition:stroke-dashoffset 1.1s var(--ease) .2s}
+.in .scr,.rv.in .scr{stroke-dashoffset:0}
+/* organic */
+.organic{border-radius:62% 38% 55% 45%/55% 48% 52% 45%;overflow:hidden}
+.organic-2{border-radius:42% 58% 60% 40%/52% 42% 58% 48%;overflow:hidden}
+.blobimg{border-radius:50% 50% 48% 52%/55% 55% 45% 45%;overflow:hidden}
+/* marquee */
+.marq{overflow:hidden;background:var(--orange);padding:14px 0;border-block:2px solid var(--deep)}
+.marq-t{display:flex;gap:30px;white-space:nowrap;animation:m 26s linear infinite}
+.marq-t span{font-family:'Unbounded';font-weight:700;font-size:clamp(16px,2.2vw,26px);color:#fff;text-transform:lowercase;display:inline-flex;gap:30px;align-items:center}
+@keyframes m{to{transform:translateX(-50%)}}
+/* sparkle */
+.spark{position:absolute;color:var(--orange);animation:tw 2.4s ease-in-out infinite}
+@keyframes tw{0%,100%{transform:scale(1) rotate(0);opacity:.9}50%{transform:scale(1.4) rotate(20deg);opacity:.4}}
+.float{animation:fl 5s ease-in-out infinite}
+@keyframes fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes spin{to{transform:rotate(360deg)}}.spin{animation:spin 20s linear infinite}
+@keyframes wv{0%,100%{transform:rotate(0)}25%{transform:rotate(16deg)}75%{transform:rotate(-10deg)}}.wave{display:inline-block;animation:wv 2.2s ease-in-out infinite;transform-origin:70% 70%}
+/* wave bars */
+.wb{display:flex;align-items:flex-end;gap:4px;height:30px}
+.wb i{width:5px;background:currentColor;border-radius:3px;animation:wbb 1.1s ease-in-out infinite}
+.wb i:nth-child(2){animation-delay:.15s}.wb i:nth-child(3){animation-delay:.3s}.wb i:nth-child(4){animation-delay:.45s}.wb i:nth-child(5){animation-delay:.6s}.wb i:nth-child(6){animation-delay:.75s}.wb i:nth-child(7){animation-delay:.9s}
+@keyframes wbb{0%,100%{height:25%}50%{height:100%}}
+/* slider */
+.slider{overflow:hidden;border-radius:var(--r)}
+.strack{display:flex;transition:transform .55s var(--ease)}.slide{flex:0 0 100%}
+.dots{display:flex;gap:7px;margin-top:16px}
+.dots button{height:9px;width:9px;border-radius:999px;border:none;background:rgba(31,43,23,.25);cursor:pointer;transition:.25s}
+.dots button.on{width:26px;background:var(--orange)}
+.snav{width:48px;height:48px;border-radius:50%;border:2px solid currentColor;background:transparent;color:inherit;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;transition:.2s}
+.snav:hover{background:var(--orange);border-color:var(--orange);color:#fff;transform:translateY(-2px)}
+/* faq */
+.faq details{border-bottom:2px solid rgba(31,43,23,.18)}
+.faq summary{list-style:none;cursor:pointer;padding:24px 4px;display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:'Unbounded';font-weight:700;font-size:clamp(16px,2vw,23px);text-transform:lowercase}
+.faq summary::-webkit-details-marker{display:none}
+.faq .fi{flex:none;color:var(--orange);transition:transform .25s}.faq details[open] .fi{transform:rotate(45deg)}
+.faq p{padding:0 4px 24px;color:var(--muted);line-height:1.6;font-weight:500;max-width:80ch}
+/* video */
+.vcard{position:relative;overflow:hidden;border-radius:var(--r);cursor:pointer}
+.vcard img{width:100%;height:100%;object-fit:cover;transition:transform .4s var(--ease)}.vcard:hover img{transform:scale(1.05)}
+.vcard .play{position:absolute;inset:0;margin:auto;width:64px;height:64px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;transition:transform .25s}.vcard:hover .play{transform:scale(1.14)}
+/* lightbox */
+#lb{position:fixed;inset:0;z-index:3000;background:rgba(20,28,15,.93);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px}#lb.show{display:flex}
+/* card */
+.card{background:var(--cream);color:var(--ink);border-radius:var(--r);transition:transform .28s var(--ease),box-shadow .28s var(--ease)}
+.card.hov:hover{transform:scale(1.02);box-shadow:0 30px 60px -28px rgba(15,30,10,.55)}
+.icon{width:54px;height:54px;border-radius:16px;display:flex;align-items:center;justify-content:center;background:var(--orange);color:#fff}
+.arch{border-radius:280px 280px 0 0}
+/* hero */
+.hero-h1{font-family:'Unbounded';font-weight:900;letter-spacing:-.03em;line-height:.9;text-transform:lowercase;font-size:clamp(46px,10.5vw,132px);text-align:center}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.facts>div{padding:30px;border-right:2px solid rgba(239,233,216,.18)}
+.facts>div:last-child{border-right:none}
+.timeline{position:relative}
+.timeline::before{content:"";position:absolute;left:0;right:0;top:34px;height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0 10px,transparent 10px 20px)}
+@media(max-width:860px){
+  .nav-links,.soc{display:none}.burger{display:flex}
+  .nav-links.open{display:flex;position:fixed;top:72px;left:16px;right:16px;flex-direction:column;background:var(--deep);border-radius:20px;padding:16px;gap:6px}
+  .nav-links.open a{padding:12px}
+  .g2,.g3,.g4{grid-template-columns:1fr!important}
+  .facts{grid-template-columns:1fr 1fr}.facts>div{border-right:none;border-bottom:2px solid rgba(239,233,216,.18)}
+  .timeline::before{display:none}
+  .hide-m{display:none!important}
+}
+</style>
 </head>
-<body class="text-ink antialiased overflow-x-hidden">
+<body>
+
+<!-- NAV -->
+<nav class="nav"><div class="nav-in">
+  <a href="#top" class="nav-logo"><img src="https://static.tildacdn.com/tild3330-3739-4230-b662-643863666461/Frame_438.svg" alt="Casty"/></a>
+  <ul class="nav-links">
+    <li><a href="#features">О нас</a></li><li><a href="#halls">Залы</a></li><li><a href="#works">Работы</a></li><li><a href="#faq">FAQ</a></li><li><a href="#contact">Контакты</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="soc">
+      <a href="https://t.me/castystudio" target="_blank" rel="noopener" aria-label="Telegram"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-1.97 9.279c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.17 14.015l-2.95-.924c-.643-.204-.657-.643.136-.953l11.526-4.443c.535-.194 1.003.13.68.553z"/></svg></a>
+      <a href="https://vk.com/casty.studio" target="_blank" rel="noopener" aria-label="VK"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M15.07 2H8.93C3.33 2 2 3.33 2 8.93v6.14C2 20.67 3.33 22 8.93 22h6.14c5.6 0 6.93-1.33 6.93-6.93V8.93C22 3.33 20.67 2 15.07 2zm3.08 14.27h-1.45c-.55 0-.72-.44-1.7-1.43-.86-.83-1.24-.75-1.24.44v1c0 .35-.11.55-1.03.55-1.52 0-3.2-.92-4.38-2.63-1.78-2.48-2.27-4.36-2.27-4.75 0-.2.08-.39.43-.39h1.45c.33 0 .45.15.57.5.63 1.82 1.68 3.41 2.12 3.41.16 0 .24-.08.24-.49V9.74c-.05-.87-.51-.95-.51-1.26 0-.16.13-.33.35-.33h2.29c.27 0 .37.15.37.46v2.49c0 .28.12.37.2.37.16 0 .3-.09.6-.4.93-1.04 1.59-2.64 1.59-2.64.09-.2.25-.39.58-.39h1.45c.44 0 .53.23.44.5-.18.83-1.94 3.33-1.94 3.33-.15.25-.21.36 0 .64.15.21.64.63.96 1.02.6.69 1.06 1.27 1.18 1.67.13.4-.07.6-.45.6z"/></svg></a>
+    </div>
+    <a href="#contact" class="btn outline magnetic" style="padding:11px 20px">Забронировать</a>
+    <button class="burger" aria-label="Меню"><span></span></button>
+  </div>
+</div></nav>
 
 <a id="top"></a>
+<!-- ===== HERO (centered) ===== -->
+<header class="dark" style="padding:130px 0 60px;overflow:hidden;text-align:center">
+  <div class="wrap" style="position:relative">
+    <!-- floating decorative sparkles -->
+    <svg class="spark hide-m" style="left:6%;top:80px;width:34px" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2.4 9.6L24 12l-9.6 2.4L12 24l-2.4-9.6L0 12l9.6-2.4z"/></svg>
+    <svg class="spark hide-m" style="right:8%;top:140px;width:22px;animation-delay:.8s" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2.4 9.6L24 12l-9.6 2.4L12 24l-2.4-9.6L0 12l9.6-2.4z"/></svg>
+    <svg class="spark hide-m" style="left:14%;bottom:40px;width:18px;animation-delay:1.4s" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2.4 9.6L24 12l-9.6 2.4L12 24l-2.4-9.6L0 12l9.6-2.4z"/></svg>
 
-<!-- ===== NAV ===== -->
-<header id="nav" class="fixed top-4 left-4 right-4 z-50">
-  <nav class="bg-white/70 backdrop-blur-xl border border-ink/10 rounded-full pl-6 pr-3 py-2.5 flex items-center justify-between max-w-7xl mx-auto shadow-sm">
-    <a href="#top" class="flex items-center gap-2">
-      <img src="https://static.tildacdn.com/tild3330-3739-4230-b662-643863666461/Frame_438.svg" alt="Casty" class="h-7 w-auto" />
-    </a>
-    <ul class="hidden lg:flex gap-8 text-sm text-muted font-medium">
-      <li><a href="#about" class="hover:text-ink transition-colors duration-200 cursor-pointer">О нас</a></li>
-      <li><a href="#how" class="hover:text-ink transition-colors duration-200 cursor-pointer">Как работаем</a></li>
-      <li><a href="#equip" class="hover:text-ink transition-colors duration-200 cursor-pointer">Оборудование</a></li>
-      <li><a href="#faq" class="hover:text-ink transition-colors duration-200 cursor-pointer">FAQ</a></li>
-      <li><a href="#contact" class="hover:text-ink transition-colors duration-200 cursor-pointer">Контакты</a></li>
-    </ul>
-    <div class="flex items-center gap-2">
-      <a href="https://t.me/castystudio" target="_blank" rel="noopener" aria-label="Telegram" class="hidden sm:flex w-10 h-10 rounded-full bg-paper items-center justify-center hover:bg-mint transition-colors cursor-pointer">
-        <svg class="w-4 h-4 text-ink" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-1.97 9.279c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.17 14.015l-2.95-.924c-.643-.204-.657-.643.136-.953l11.526-4.443c.535-.194 1.003.13.68.553z"/></svg>
-      </a>
-      <a href="#contact" class="bg-brand hover:bg-brand-dark text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-colors duration-200 cursor-pointer">Забронировать</a>
+    <div class="rv" style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;margin-bottom:22px">
+      <span class="pill out">подкаст-студия</span><span class="pill olive">москва · artplay</span>
+      <span class="hand" style="color:var(--orange);font-size:24px">записать — это просто ✦</span>
     </div>
-  </nav>
+
+    <h1 class="hero-h1 rv" data-d="1" style="color:var(--cream);position:relative;display:inline-block">
+      записывай<br/><span style="color:var(--orange)">подкасты</span>
+      <svg viewBox="0 0 560 36" style="position:absolute;left:50%;transform:translateX(-50%);bottom:-14px;width:min(70%,460px)" preserveAspectRatio="none"><path class="scr" d="M6 26 C 130 6, 280 6, 420 22 S 545 30, 554 12"/></svg>
+    </h1>
+
+    <p class="serif rv" data-d="2" style="font-size:clamp(19px,2.4vw,26px);color:var(--cream);max-width:620px;margin:40px auto 0;line-height:1.45">Студия записи аудио и видео подкастов в Москве. Следим, чтобы всё шло по плану и в лучшем качестве.</p>
+
+    <div class="rv" data-d="3" style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:30px">
+      <a href="#contact" class="btn magnetic">Забронировать онлайн</a>
+      <a href="#halls" class="btn ghost">Смотреть залы</a>
+    </div>
+
+    <!-- hero photo banner (contained, organic) -->
+    <div class="rv" data-d="3" style="position:relative;margin-top:54px">
+      <div class="organic" style="aspect-ratio:21/9;max-width:1080px;margin:0 auto"><img src="https://static.tildacdn.com/tild6464-6362-4261-a364-316161313430/1.jpg" style="width:100%;height:100%;object-fit:cover" alt="Студия Casty"/></div>
+      <span class="hand float hide-m" style="position:absolute;left:4%;bottom:8%;background:var(--orange);color:#fff;padding:8px 16px;border-radius:14px;font-size:24px;transform:rotate(-5deg)">ламповая атмосфера</span>
+      <div class="spin hide-m" style="position:absolute;right:3%;top:-26px;width:92px;height:92px"><svg viewBox="0 0 100 100" style="width:100%;height:100%"><circle cx="50" cy="50" r="46" fill="var(--orange)"/><path id="cir" d="M50 12 a38 38 0 1 1 0 76 a38 38 0 1 1 0 -76" fill="none"/><text font-family="Manrope" font-size="9.5" font-weight="700" letter-spacing="1.5" fill="#fff"><textPath href="#cir">CASTY · ПОДКАСТЫ · CASTY · </textPath></text></svg></div>
+    </div>
+  </div>
 </header>
 
-<!-- ===== HERO ===== -->
-<section class="px-4 pt-28 md:pt-32">
-  <div class="max-w-7xl mx-auto">
-    <div class="relative rounded-[40px] overflow-hidden bg-ink min-h-[640px] flex items-end">
-      <img src="https://static.tildacdn.com/tild6464-6362-4261-a364-316161313430/1.jpg" alt="Студия Casty" class="absolute inset-0 w-full h-full object-cover opacity-40" />
-      <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-ink/10"></div>
-      <!-- мятный блюр-круг -->
-      <div class="absolute -top-32 -right-32 w-[34rem] h-[34rem] rounded-full bg-mint/25 blur-3xl"></div>
-      <div class="relative z-10 px-6 md:px-16 pt-20 pb-12 w-full">
-        <div class="reveal inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 mb-8">
-          <span class="w-2 h-2 rounded-full bg-mint animate-pulse"></span>
-          <span class="text-white text-sm font-medium">Студия подкастов в Москве · ArtPlay · м. Чкаловская</span>
+<!-- MARQUEE -->
+<div class="marq"><div class="marq-t"><span>youtube · vk · shorts · reels · подкаст под ключ · аудио · видео ·&nbsp;</span><span>youtube · vk · shorts · reels · подкаст под ключ · аудио · видео ·&nbsp;</span></div></div>
+
+<!-- ===== FACTS BAND (new) ===== -->
+<section class="deep" style="padding:20px 0">
+  <div class="wrap">
+    <div class="facts rv">
+      <div><span class="disp" style="font-size:clamp(40px,5vw,68px);color:var(--orange)">2</span><div class="label" style="opacity:.7;margin-top:6px">зала на ArtPlay</div></div>
+      <div><span class="disp" style="font-size:clamp(40px,5vw,68px);color:var(--orange)">4K</span><div class="label" style="opacity:.7;margin-top:6px">видео Sony</div></div>
+      <div><span class="disp" style="font-size:clamp(40px,5vw,68px);color:var(--orange)">1—2</span><div class="label" style="opacity:.7;margin-top:6px">дня на файлы</div></div>
+      <div><span class="disp" style="font-size:clamp(40px,5vw,68px);color:var(--orange)">10—22</span><div class="label" style="opacity:.7;margin-top:6px">работаем каждый день</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURES (new icon cards) ===== -->
+<section id="features" class="light" style="padding:90px 0">
+  <div class="wrap">
+    <div class="rv" style="max-width:760px;margin-bottom:46px">
+      <p class="eyebrow">почему casty</p>
+      <h2 class="disp" style="font-size:clamp(36px,6vw,76px);color:var(--ink);margin-top:12px">студия, где идеи<br/>становятся <span style="color:var(--orange)">звуком</span></h2>
+      <p class="serif" style="font-size:clamp(19px,2.2vw,26px);color:var(--ink);margin-top:18px;max-width:60ch">«Мы действительно влюблены в подкасты и изучили это направление от и до»</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px" class="g4">
+      <div class="rv card hov" style="padding:30px">
+        <div class="icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="2" width="6" height="12" rx="3"/><path stroke-linecap="round" d="M5 10a7 7 0 0 0 14 0M12 17v4"/></svg></div>
+        <h3 style="font-weight:800;font-size:19px;margin:16px 0 8px">Топовая техника</h3>
+        <p style="color:var(--muted);font-weight:500">Октава, Shure, Rode и камеры Sony 4K — лучшее для аудио и видео.</p>
+      </div>
+      <div class="rv card hov" data-d="1" style="padding:30px;background:var(--forest);color:var(--cream)">
+        <div class="icon" style="background:var(--lime);color:var(--ink)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.55-2.27A1 1 0 0 1 21 8.6v6.8a1 1 0 0 1-1.45.87L15 14M3 8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div>
+        <h3 style="font-weight:800;font-size:19px;margin:16px 0 8px">Аудио + видео</h3>
+        <p style="color:rgba(239,233,216,.75);font-weight:500">Снимаем на YouTube, VK, Shorts и Reels в идеальном качестве.</p>
+      </div>
+      <div class="rv card hov" data-d="2" style="padding:30px">
+        <div class="icon" style="background:var(--olive)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12h4l3 8 4-16 3 8h4"/></svg></div>
+        <h3 style="font-weight:800;font-size:19px;margin:16px 0 8px">Под ключ</h3>
+        <p style="color:var(--muted);font-weight:500">От записи до монтажа, саунд-дизайна и публикации на площадках.</p>
+      </div>
+      <div class="rv card hov" data-d="3" style="padding:30px;background:var(--orange);color:#fff">
+        <div class="icon" style="background:#fff;color:var(--orange)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21s-7-4.5-7-10a7 7 0 0 1 14 0c0 5.5-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg></div>
+        <h3 style="font-weight:800;font-size:19px;margin:16px 0 8px">ArtPlay · Чкаловская</h3>
+        <p style="color:rgba(255,255,255,.9);font-weight:500">Кафе и рестораны рядом, охраняемая парковка, без пропусков.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROCESS TIMELINE (new) ===== -->
+<section class="dark" style="padding:90px 0;overflow:hidden">
+  <div class="wrap" style="position:relative">
+    <div class="rv" style="text-align:center;max-width:720px;margin:0 auto 56px;position:relative">
+      <p class="eyebrow" style="margin-bottom:14px">как мы работаем</p>
+      <h2 class="disp" style="font-size:clamp(34px,6vw,80px);color:var(--cream)">создаём потрясающие подкасты</h2>
+    </div>
+    <div class="timeline" style="display:grid;grid-template-columns:repeat(3,1fr);gap:30px" class="g3">
+      <div class="rv" style="text-align:center"><div class="float" style="width:70px;height:70px;margin:0 auto;border-radius:50%;background:var(--orange);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Unbounded';font-weight:800;font-size:24px;position:relative;z-index:1">01</div><h3 class="serif" style="font-size:24px;margin:18px 0 8px;color:var(--cream)">Проводим запись</h3><p style="color:rgba(239,233,216,.7);font-weight:500">Создаём идеальные условия, следим за качеством и планом.</p></div>
+      <div class="rv" data-d="1" style="text-align:center"><div class="float" style="width:70px;height:70px;margin:0 auto;border-radius:50%;background:var(--orange);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Unbounded';font-weight:800;font-size:24px;position:relative;z-index:1;animation-delay:.4s">02</div><h3 class="serif" style="font-size:24px;margin:18px 0 8px;color:var(--cream)">Делаем продакшн</h3><p style="color:rgba(239,233,216,.7);font-weight:500">Сведение, монтаж, саунд-дизайн. По запросу — «сырые» файлы.</p></div>
+      <div class="rv" data-d="2" style="text-align:center"><div class="float" style="width:70px;height:70px;margin:0 auto;border-radius:50%;background:var(--orange);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Unbounded';font-weight:800;font-size:24px;position:relative;z-index:1;animation-delay:.8s">03</div><h3 class="serif" style="font-size:24px;margin:18px 0 8px;color:var(--cream)">Публикуем подкаст</h3><p style="color:rgba(239,233,216,.7);font-weight:500">Помогаем выложить на площадки — первые просмотры и прослушивания.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HALLS (tabbed single viewer — new structure) ===== -->
+<section id="halls" class="light" style="padding:90px 0">
+  <div class="wrap">
+    <div class="rv" style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:32px">
+      <div><p class="eyebrow">наши залы</p><h2 class="disp" style="font-size:clamp(38px,7vw,96px);color:var(--ink);margin-top:10px">два зала</h2></div>
+      <div data-tabs="halls" style="display:flex;gap:10px">
+        <button class="btn active" data-tab="small">Малый зал</button>
+        <button class="btn outline" data-tab="big">Большой зал</button>
+      </div>
+    </div>
+
+    <!-- SMALL -->
+    <div data-panel-group="halls">
+      <div data-panel="small">
+        <div class="card" style="background:var(--cream-2);padding:24px">
+          <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center;margin-bottom:18px">
+            <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span class="pill">artplay</span><span class="pill out">до 3 человек</span><span class="serif" style="font-size:22px;color:var(--ink)">аудио &amp; видео</span></div>
+            <div style="display:flex;gap:10px;align-items:center"><b class="disp" style="font-size:24px;color:var(--orange)">от 4 000 ₽</b><button class="snav snav-prev" data-t="h1" style="color:var(--ink)" aria-label="назад">←</button><button class="snav snav-next" data-t="h1" style="color:var(--ink)" aria-label="вперёд">→</button></div>
+          </div>
+          <div class="slider" data-slider="h1"><div class="strack">
+            <div class="slide"><img src="https://static.tildacdn.com/tild6231-6131-4433-b563-363136353837/10_4.jpg" style="width:100%;aspect-ratio:16/9;object-fit:cover" alt=""></div>
+            <div class="slide"><img src="https://static.tildacdn.com/tild3366-3138-4730-b239-343665633733/10_5.jpg" style="width:100%;aspect-ratio:16/9;object-fit:cover" alt=""></div>
+            <div class="slide"><img src="https://static.tildacdn.com/tild3237-6231-4130-b366-303166646238/10_7.jpg" style="width:100%;aspect-ratio:16/9;object-fit:cover" alt=""></div>
+            <div class="slide"><img src="https://static.tildacdn.com/tild3738-6337-4464-b638-353062383964/10_6.jpg" style="width:100%;aspect-ratio:16/9;object-fit:cover" alt=""></div>
+            <div class="slide"><img src="https://static.tildacdn.com/tild6163-3666-4338-b439-633938306238/10_3.jpg" style="width:100%;aspect-ratio:16/9;object-fit:cover" alt=""></div>
+            <div class="slide"><img src="https://static.tildacdn.com/tild3136-3131-4337-a635-386331333935/6.jpg" style="width:100%;aspect-ratio:16/9;object-fit:cover" alt=""></div>
+            <div class="slide"><img src="https://static.tildacdn.com/tild3534-6138-4761-b234-643337363462/5.jpg" style="width:100%;aspect-ratio:16/9;object-fit:cover" alt=""></div>
+            <div class="slide"><img src="https://static.tildacdn.com/tild3163-3037-4835-a365-666435626464/10_2.jpg" style="width:100%;aspect-ratio:16/9;object-fit:cover" alt=""></div>
+          </div></div>
+          <div class="dots" data-t="h1"></div>
         </div>
-        <h1 class="reveal font-extrabold text-white text-[clamp(2.6rem,8.5vw,7.5rem)] leading-[0.92] tracking-tight mb-8">
-          Записывайте<br/>подкасты <span class="text-mint">в идеальной</span><br/>и ламповой атмосфере
-        </h1>
-        <div class="reveal flex flex-col md:flex-row md:items-end gap-8 md:gap-16" data-d="1">
-          <p class="text-white/80 text-lg leading-relaxed max-w-md">
-            Записать подкаст — это просто! Следим за тем, чтобы всё шло по плану и в лучшем качестве. 2 зала для съёмки на YouTube, VK, Shorts и Reels.
-          </p>
-          <div class="flex flex-wrap gap-4">
-            <a href="#contact" class="magnetic bg-brand hover:bg-brand-dark text-white font-semibold px-8 py-4 rounded-full transition-colors duration-200 cursor-pointer">Забронировать онлайн</a>
-            <a href="#halls" class="border border-white/30 hover:border-white/70 text-white font-semibold px-8 py-4 rounded-full transition-colors duration-200 cursor-pointer">Смотреть залы</a>
+      </div>
+      <!-- BIG -->
+      <div data-panel="big" style="display:none">
+        <div class="card" style="background:var(--cream-2);padding:24px">
+          <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center;margin-bottom:18px">
+            <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span class="pill">artplay</span><span class="pill out">до 6 человек</span><span class="serif" style="font-size:22px;color:var(--ink)">видео</span></div>
+            <div style="display:flex;gap:10px;align-items:center"><b class="disp" style="font-size:24px;color:var(--orange)">от 8 000 ₽</b><button class="snav snav-prev" data-t="h2" style="color:var(--ink)" aria-label="назад">←</button><button class="snav snav-next" data-t="h2" style="color:var(--ink)" aria-label="вперёд">→</button></div>
+          </div>
+          <div class="slider" data-slider="h2"><div class="strack">
+            <div class="slide"><img src="https://static.tildacdn.com/tild3430-6631-4065-b132-316334306537/1.jpg" style="width:100%;aspect-ratio:16/9;object-fit:cover" alt=""></div>
+            <div class="slide"><img src="https://static.tildacdn.com/tild6162-6265-4535-b465-326465633866/2.jpg" style="width:100%;aspect-ratio:16/9;object-fit:cover" alt=""></div>
+            <div class="slide"><img src="https://static.tildacdn.com/tild6438-3430-4335-b664-373134323262/4.jpg" style="width:100%;aspect-ratio:16/9;object-fit:cover" alt=""></div>
+            <div class="slide"><img src="https://static.tildacdn.com/tild3261-3864-4865-a239-306137306432/5.jpg" style="width:100%;aspect-ratio:16/9;object-fit:cover" alt=""></div>
+            <div class="slide"><img src="https://static.tildacdn.com/tild6131-6166-4632-b938-323132636262/1.jpg" style="width:100%;aspect-ratio:16/9;object-fit:cover" alt=""></div>
+            <div class="slide"><img src="https://static.tildacdn.com/tild6533-3861-4132-a135-633831326230/2.jpg" style="width:100%;aspect-ratio:16/9;object-fit:cover" alt=""></div>
+            <div class="slide"><img src="https://static.tildacdn.com/tild6339-3032-4133-b734-613536313730/3.jpg" style="width:100%;aspect-ratio:16/9;object-fit:cover" alt=""></div>
+            <div class="slide"><img src="https://static.tildacdn.com/tild3136-6437-4666-b432-306266626337/5.jpg" style="width:100%;aspect-ratio:16/9;object-fit:cover" alt=""></div>
+            <div class="slide"><img src="https://static.tildacdn.com/tild3665-6236-4331-a238-373732613333/6.jpg" style="width:100%;aspect-ratio:16/9;object-fit:cover" alt=""></div>
+            <div class="slide"><img src="https://static.tildacdn.com/tild6665-6536-4837-b764-343062613137/5.jpg" style="width:100%;aspect-ratio:16/9;object-fit:cover" alt=""></div>
+            <div class="slide"><img src="https://static.tildacdn.com/tild3334-6436-4134-a632-636564656639/4.jpg" style="width:100%;aspect-ratio:16/9;object-fit:cover" alt=""></div>
+            <div class="slide"><img src="https://static.tildacdn.com/tild3163-3963-4832-a230-313634663565/2.jpg" style="width:100%;aspect-ratio:16/9;object-fit:cover" alt=""></div>
+          </div></div>
+          <div class="dots" data-t="h2"></div>
+        </div>
+      </div>
+    </div>
+    <p class="rv" style="color:var(--muted);font-weight:500;font-size:14px;margin-top:18px;text-align:center">Минимум 1 час · стоимость за студийное время с базовой помощью оператора · доп. услуги — индивидуально</p>
+  </div>
+</section>
+
+<!-- ===== EQUIPMENT (arched + tabs) ===== -->
+<section class="deep" style="padding:0 0 90px">
+  <div class="arch" style="background:var(--olive);padding:58px 0 66px;text-align:center">
+    <p class="eyebrow rv" style="color:var(--lime);margin-bottom:14px">оборудование</p>
+    <h2 class="disp rv" data-d="1" style="font-size:clamp(34px,6vw,82px);color:var(--cream)">только профи-техника</h2>
+    <div class="rv wb" data-d="2" style="color:var(--lime);justify-content:center;margin-top:18px"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  </div>
+  <div class="wrap" style="margin-top:50px" data-tabs="eq">
+    <div class="rv" style="display:flex;gap:10px;justify-content:center;margin-bottom:30px">
+      <button class="btn active" data-tab="audio">Аудио</button>
+      <button class="btn ghost" data-tab="video">Видео</button>
+    </div>
+    <div data-panel-group="eq">
+      <div class="rv" data-d="1" data-panel="audio" style="display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center" class="g2">
+        <div class="organic" style="aspect-ratio:4/3"><img src="https://static.tildacdn.com/tild3030-6239-4337-b163-626564633362/Oktava_shure.jpg" style="width:100%;height:100%;object-fit:cover" alt=""></div>
+        <div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px"><span class="pill">Октава</span><span class="pill">Shure</span><span class="pill">Rode Procaster</span></div>
+          <p class="serif" style="font-size:24px;color:var(--cream);line-height:1.4;margin-bottom:12px">Микрофоны мирового уровня и эталонный интерфейс подкаст-индустрии.</p>
+          <p style="color:rgba(239,233,216,.72);font-weight:500;line-height:1.6">Приятный басовый звук без посторонних шумов, с настройками под конкретный голос. Дорожка — сборная или по отдельным каналам.</p>
+        </div>
+      </div>
+      <div data-panel="video" style="display:none">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center" class="g2">
+          <div class="organic" style="aspect-ratio:4/3"><img src="https://static.tildacdn.com/tild3938-6338-4630-a331-373731356530/Sony_a640_2.jpg" style="width:100%;height:100%;object-fit:cover" alt=""></div>
+          <div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px"><span class="pill">Sony a7c</span><span class="pill">FX-30</span><span class="pill">4K</span><span class="pill">ATEM Mini</span></div>
+            <p class="serif" style="font-size:24px;color:var(--cream);line-height:1.4;margin-bottom:12px">Парк камер Sony в 4K, видеомикшер Blackmagic и профессиональный свет.</p>
+            <p style="color:rgba(239,233,216,.72);font-weight:500;line-height:1.6">Качество картинки впечатляет. Помогаем с настройкой света и красим сырое видео в сочные цвета на выходе.</p>
           </div>
         </div>
-        <p class="reveal text-white/40 text-xs mt-6" data-d="2">*нажимая на кнопку, вы соглашаетесь с условиями и правилами аренды студии</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== BENEFITS STRIP ===== -->
-<section class="px-4 py-12">
-  <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-4">
-    <div class="reveal flex gap-4 items-start"><span class="text-brand text-xl mt-0.5">✦</span><p class="text-muted leading-relaxed">Аудио и видео форматы на высококачественном оборудовании</p></div>
-    <div class="reveal flex gap-4 items-start" data-d="1"><span class="text-brand text-xl mt-0.5">✦</span><p class="text-muted leading-relaxed">Запишем ваш подкаст или сделаем всё «под ключ»: от записи до публикации</p></div>
-    <div class="reveal flex gap-4 items-start" data-d="2"><span class="text-brand text-xl mt-0.5">✦</span><p class="text-muted leading-relaxed">Хорошие скидки постоянным клиентам</p></div>
-  </div>
-</section>
-
-<!-- ===== MARQUEE ===== -->
-<div class="bg-brand py-4 overflow-hidden">
-  <div class="marquee-track text-white font-bold text-sm uppercase tracking-widest">
-    <span>Аудио запись</span><span class="opacity-40">·</span><span>Видео запись</span><span class="opacity-40">·</span><span>Постпродакшн</span><span class="opacity-40">·</span><span>Монтаж</span><span class="opacity-40">·</span><span>Саунд-дизайн</span><span class="opacity-40">·</span><span>Reels &amp; Shorts</span><span class="opacity-40">·</span><span>Публикация</span><span class="opacity-40">·</span>
-    <span>Аудио запись</span><span class="opacity-40">·</span><span>Видео запись</span><span class="opacity-40">·</span><span>Постпродакшн</span><span class="opacity-40">·</span><span>Монтаж</span><span class="opacity-40">·</span><span>Саунд-дизайн</span><span class="opacity-40">·</span><span>Reels &amp; Shorts</span><span class="opacity-40">·</span><span>Публикация</span><span class="opacity-40">·</span>
-  </div>
-</div>
-
-<!-- ===== ABOUT / BENTO ===== -->
-<section id="about" class="py-20 px-4">
-  <div class="max-w-7xl mx-auto">
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-      <h2 class="reveal font-extrabold text-[clamp(2.2rem,5.5vw,4.8rem)] leading-[0.95] tracking-tight">Студия Casty<br/><span class="text-brand">— это</span></h2>
-      <p class="reveal text-muted max-w-sm text-base leading-relaxed" data-d="1">Мы действительно влюблены в подкасты и изучили это направление от и до. Наверное, самая дружелюбная студия в Москве :)</p>
+<!-- ===== WORKS ===== -->
+<section id="works" class="light" style="padding:90px 0">
+  <div class="wrap">
+    <div class="rv" style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:34px">
+      <div><p class="eyebrow">наши работы</p><h2 class="disp" style="font-size:clamp(38px,7vw,100px);color:var(--ink);margin-top:10px">подкасты из casty</h2></div>
+      <p class="serif" style="font-size:22px;color:var(--ink);max-width:30ch">Нажми на любой выпуск, чтобы посмотреть</p>
     </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <div class="reveal card-hover md:col-span-2 bg-white border border-ink/8 rounded-3xl overflow-hidden flex flex-col md:flex-row">
-        <div class="p-8 flex-1">
-          <span class="inline-block bg-mint text-ink text-xs font-semibold px-3 py-1.5 rounded-full mb-5">Атмосфера</span>
-          <h3 class="font-bold text-2xl mb-3">Классная ламповая атмосфера</h3>
-          <p class="text-muted leading-relaxed">Лофт-пространство с большими окнами, 2 зала с несколькими зонами для записи на выбор. Мы никого не торопим до записи и не выгоняем после.</p>
-        </div>
-        <div class="md:w-2/5 min-h-[220px] bg-mint-2 overflow-hidden">
-          <img src="https://static.tildacdn.com/tild6231-6131-4433-b563-363136353837/10_4.jpg" alt="Зал студии" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
-        </div>
-      </div>
-      <div class="reveal card-hover bg-ink text-white rounded-3xl p-8 flex flex-col justify-between" data-d="1">
-        <div>
-          <span class="inline-block bg-white/15 text-white text-xs font-semibold px-3 py-1.5 rounded-full mb-5">Техника</span>
-          <h3 class="font-bold text-2xl mb-3">Качественное оборудование</h3>
-          <p class="text-white/70 leading-relaxed text-sm">У нас действительно лучшая аудио и видео техника для записи подкастов.</p>
-        </div>
-        <div class="flex gap-2 flex-wrap mt-6">
-          <span class="bg-white/10 text-xs px-3 py-1.5 rounded-full">Shure</span>
-          <span class="bg-white/10 text-xs px-3 py-1.5 rounded-full">Октава</span>
-          <span class="bg-white/10 text-xs px-3 py-1.5 rounded-full">Rode</span>
-          <span class="bg-white/10 text-xs px-3 py-1.5 rounded-full">Sony 4K</span>
-        </div>
-      </div>
-      <div class="reveal card-hover bg-white border border-ink/8 rounded-3xl p-8">
-        <span class="inline-block bg-mint text-ink text-xs font-semibold px-3 py-1.5 rounded-full mb-5">Локация</span>
-        <h3 class="font-bold text-xl mb-3">Отличное местоположение</h3>
-        <p class="text-muted leading-relaxed text-sm">Находимся на территории ArtPlay, где также множество кафе и ресторанов. Можно отдохнуть после записи или назначить встречу перед ней.</p>
-      </div>
-      <div class="reveal card-hover bg-mint rounded-3xl p-8" data-d="1">
-        <span class="inline-block bg-white text-ink text-xs font-semibold px-3 py-1.5 rounded-full mb-5">Цены</span>
-        <h3 class="font-bold text-xl mb-3">Приятные цены</h3>
-        <p class="text-ink/70 leading-relaxed text-sm">Не задираем ценник и не дробим цену на будни и выходные. При всех преимуществах — очень демократичная стоимость услуг.</p>
-      </div>
-      <div class="reveal card-hover bg-brand text-white rounded-3xl p-8 flex flex-col justify-between" data-d="2">
-        <div>
-          <h3 class="font-bold text-2xl mb-3">Сделаем «под ключ»</h3>
-          <p class="text-white/80 leading-relaxed text-sm">От записи до публикации на всех платформах.</p>
-        </div>
-        <a href="#contact" class="inline-flex items-center gap-2 text-white font-semibold mt-6 cursor-pointer group">
-          Обсудить проект
-          <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-        </a>
-      </div>
+    <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:16px" class="g3">
+      <div class="rv vcard" data-yt="OUkp6kIog9Y" style="grid-column:span 4;aspect-ratio:16/9"><img src="https://static.tildacdn.com/tild6231-6462-4637-b165-626538636234/maxresdefault.jpg" alt=""/><span class="play"><svg width="24" height="24" viewBox="0 0 24 24" fill="#fff" style="margin-left:3px"><path d="M8 5v14l11-7z"/></svg></span></div>
+      <div class="rv vcard" data-d="1" data-yt="zznNMPqc_HA" style="grid-column:span 2;aspect-ratio:1/1"><img src="https://static.tildacdn.com/tild3339-3038-4633-b761-346330643931/maxresdefault_2.jpg" alt=""/><span class="play"><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff" style="margin-left:3px"><path d="M8 5v14l11-7z"/></svg></span></div>
+      <div class="rv vcard" data-yt="tyWNmlGh6k8" style="grid-column:span 2;aspect-ratio:1/1"><img src="https://static.tildacdn.com/tild3634-3363-4764-b065-326137316431/maxresdefault_3.jpg" alt=""/><span class="play"><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff" style="margin-left:3px"><path d="M8 5v14l11-7z"/></svg></span></div>
+      <div class="rv vcard" data-d="1" data-yt="puCUlLyABVY" style="grid-column:span 4;aspect-ratio:16/9"><img src="https://static.tildacdn.com/tild6563-3961-4761-b661-316132663562/maxresdefault_4.jpg" alt=""/><span class="play"><svg width="24" height="24" viewBox="0 0 24 24" fill="#fff" style="margin-left:3px"><path d="M8 5v14l11-7z"/></svg></span></div>
     </div>
-  </div>
-</section>
-
-<!-- ===== HALLS SLIDERS ===== -->
-<section id="halls" class="py-12 px-4">
-  <div class="max-w-7xl mx-auto space-y-16">
-
-    <!-- Малый зал -->
-    <div>
-      <div class="flex items-end justify-between mb-6">
-        <h2 class="reveal font-extrabold text-[clamp(1.8rem,4vw,3.5rem)] tracking-tight flex items-center gap-3">Малый зал
-          <svg class="w-8 h-8 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-        </h2>
-        <div class="flex gap-2">
-          <button class="slider-prev w-12 h-12 rounded-full bg-white border border-ink/10 flex items-center justify-center hover:bg-mint transition-colors cursor-pointer" data-target="hall1" aria-label="Назад"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg></button>
-          <button class="slider-next w-12 h-12 rounded-full bg-ink text-white flex items-center justify-center hover:bg-brand transition-colors cursor-pointer" data-target="hall1" aria-label="Вперёд"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button>
-        </div>
-      </div>
-      <div class="reveal overflow-hidden rounded-3xl" data-slider="hall1">
-        <div class="slider-track">
-          <div class="slide"><img src="https://static.tildacdn.com/tild6231-6131-4433-b563-363136353837/10_4.jpg" class="w-full aspect-video object-cover" alt="Малый зал 1"></div>
-          <div class="slide"><img src="https://static.tildacdn.com/tild3366-3138-4730-b239-343665633733/10_5.jpg" class="w-full aspect-video object-cover" alt="Малый зал 2"></div>
-          <div class="slide"><img src="https://static.tildacdn.com/tild3237-6231-4130-b366-303166646238/10_7.jpg" class="w-full aspect-video object-cover" alt="Малый зал 3"></div>
-          <div class="slide"><img src="https://static.tildacdn.com/tild3738-6337-4464-b638-353062383964/10_6.jpg" class="w-full aspect-video object-cover" alt="Малый зал 4"></div>
-          <div class="slide"><img src="https://static.tildacdn.com/tild6163-3666-4338-b439-633938306238/10_3.jpg" class="w-full aspect-video object-cover" alt="Малый зал 5"></div>
-          <div class="slide"><img src="https://static.tildacdn.com/tild3136-3131-4337-a635-386331333935/6.jpg" class="w-full aspect-video object-cover" alt="Малый зал 6"></div>
-          <div class="slide"><img src="https://static.tildacdn.com/tild3534-6138-4761-b234-643337363462/5.jpg" class="w-full aspect-video object-cover" alt="Малый зал 7"></div>
-          <div class="slide"><img src="https://static.tildacdn.com/tild3163-3037-4835-a365-666435626464/10_2.jpg" class="w-full aspect-video object-cover" alt="Малый зал 8"></div>
-        </div>
-      </div>
-      <div class="slider-dots flex gap-2 justify-center mt-5" data-target="hall1"></div>
-    </div>
-
-    <!-- Большой зал -->
-    <div>
-      <div class="flex items-end justify-between mb-6">
-        <h2 class="reveal font-extrabold text-[clamp(1.8rem,4vw,3.5rem)] tracking-tight flex items-center gap-3">Большой зал
-          <svg class="w-8 h-8 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-        </h2>
-        <div class="flex gap-2">
-          <button class="slider-prev w-12 h-12 rounded-full bg-white border border-ink/10 flex items-center justify-center hover:bg-mint transition-colors cursor-pointer" data-target="hall2" aria-label="Назад"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg></button>
-          <button class="slider-next w-12 h-12 rounded-full bg-ink text-white flex items-center justify-center hover:bg-brand transition-colors cursor-pointer" data-target="hall2" aria-label="Вперёд"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button>
-        </div>
-      </div>
-      <div class="reveal overflow-hidden rounded-3xl" data-slider="hall2">
-        <div class="slider-track">
-          <div class="slide"><img src="https://static.tildacdn.com/tild3430-6631-4065-b132-316334306537/1.jpg" class="w-full aspect-video object-cover" alt="Большой зал 1"></div>
-          <div class="slide"><img src="https://static.tildacdn.com/tild6162-6265-4535-b465-326465633866/2.jpg" class="w-full aspect-video object-cover" alt="Большой зал 2"></div>
-          <div class="slide"><img src="https://static.tildacdn.com/tild6438-3430-4335-b664-373134323262/4.jpg" class="w-full aspect-video object-cover" alt="Большой зал 3"></div>
-          <div class="slide"><img src="https://static.tildacdn.com/tild3261-3864-4865-a239-306137306432/5.jpg" class="w-full aspect-video object-cover" alt="Большой зал 4"></div>
-          <div class="slide"><img src="https://static.tildacdn.com/tild6131-6166-4632-b938-323132636262/1.jpg" class="w-full aspect-video object-cover" alt="Большой зал 5"></div>
-          <div class="slide"><img src="https://static.tildacdn.com/tild6533-3861-4132-a135-633831326230/2.jpg" class="w-full aspect-video object-cover" alt="Большой зал 6"></div>
-          <div class="slide"><img src="https://static.tildacdn.com/tild6339-3032-4133-b734-613536313730/3.jpg" class="w-full aspect-video object-cover" alt="Большой зал 7"></div>
-          <div class="slide"><img src="https://static.tildacdn.com/tild3136-6437-4666-b432-306266626337/5.jpg" class="w-full aspect-video object-cover" alt="Большой зал 8"></div>
-          <div class="slide"><img src="https://static.tildacdn.com/tild3665-6236-4331-a238-373732613333/6.jpg" class="w-full aspect-video object-cover" alt="Большой зал 9"></div>
-          <div class="slide"><img src="https://static.tildacdn.com/tild6665-6536-4837-b764-343062613137/5.jpg" class="w-full aspect-video object-cover" alt="Большой зал 10"></div>
-          <div class="slide"><img src="https://static.tildacdn.com/tild3334-6436-4134-a632-636564656639/4.jpg" class="w-full aspect-video object-cover" alt="Большой зал 11"></div>
-          <div class="slide"><img src="https://static.tildacdn.com/tild3163-3963-4832-a230-313634663565/2.jpg" class="w-full aspect-video object-cover" alt="Большой зал 12"></div>
-        </div>
-      </div>
-      <div class="slider-dots flex gap-2 justify-center mt-5" data-target="hall2"></div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== HOW WE WORK ===== -->
-<section id="how" class="py-20 px-4">
-  <div class="max-w-7xl mx-auto">
-    <h2 class="reveal font-extrabold text-[clamp(2.2rem,5.5vw,4.8rem)] leading-[0.95] tracking-tight mb-14">Как мы создаём<br/><span class="text-brand">потрясающие подкасты</span></h2>
-    <div class="grid md:grid-cols-3 gap-4">
-      <div class="reveal card-hover bg-white border border-ink/8 rounded-3xl p-8">
-        <span class="font-extrabold text-5xl text-mint-2 block mb-6">01</span>
-        <h3 class="font-bold text-xl mb-3">Проводим запись</h3>
-        <p class="text-muted text-sm leading-relaxed">Создаём идеальные условия для записи, следим за тем, чтобы всё шло по плану и в лучшем качестве.</p>
-      </div>
-      <div class="reveal card-hover bg-white border border-ink/8 rounded-3xl p-8" data-d="1">
-        <span class="font-extrabold text-5xl text-mint-2 block mb-6">02</span>
-        <h3 class="font-bold text-xl mb-3">Делаем продакшн</h3>
-        <p class="text-muted text-sm leading-relaxed">Берём всю работу на себя — от сведения до монтажа и саунд-дизайна (по запросу можем отдать и «сырые» файлы проекта).</p>
-      </div>
-      <div class="reveal card-hover bg-white border border-ink/8 rounded-3xl p-8" data-d="2">
-        <span class="font-extrabold text-5xl text-mint-2 block mb-6">03</span>
-        <h3 class="font-bold text-xl mb-3">Публикуем подкаст</h3>
-        <p class="text-muted text-sm leading-relaxed">Помогаем с публикацией на специализированных площадках, чтобы ваш подкаст быстро набирал первые просмотры или прослушивания.</p>
-      </div>
-    </div>
-    <div class="text-center mt-12">
-      <a href="#contact" class="magnetic inline-block bg-brand hover:bg-brand-dark text-white font-semibold px-10 py-4 rounded-full transition-colors duration-200 cursor-pointer">Забронировать онлайн</a>
-    </div>
-  </div>
-</section>
-
-<!-- ===== VIDEO SECTION ===== -->
-<section class="py-20 px-4 bg-ink rounded-[40px] mx-4">
-  <div class="max-w-7xl mx-auto">
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-      <h2 class="reveal font-extrabold text-white text-[clamp(2rem,5vw,4rem)] leading-[0.95] tracking-tight">Наши работы</h2>
-      <p class="reveal text-white/60 max-w-sm" data-d="1">Подкасты, снятые в студии Casty. Нажмите, чтобы посмотреть.</p>
-    </div>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      <div class="reveal video-card relative rounded-2xl overflow-hidden aspect-video cursor-pointer group" data-yt="OUkp6kIog9Y">
-        <img src="https://static.tildacdn.com/tild6231-6462-4637-b165-626538636234/maxresdefault.jpg" class="w-full h-full object-cover group-hover:opacity-80 transition-opacity" alt="Подкаст 1">
-        <span class="play-btn absolute inset-0 m-auto w-16 h-16 rounded-full bg-black/60 flex items-center justify-center"><svg class="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
-      </div>
-      <div class="reveal video-card relative rounded-2xl overflow-hidden aspect-video cursor-pointer group" data-d="1" data-yt="zznNMPqc_HA">
-        <img src="https://static.tildacdn.com/tild3339-3038-4633-b761-346330643931/maxresdefault_2.jpg" class="w-full h-full object-cover group-hover:opacity-80 transition-opacity" alt="Подкаст 2">
-        <span class="play-btn absolute inset-0 m-auto w-16 h-16 rounded-full bg-black/60 flex items-center justify-center"><svg class="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
-      </div>
-      <div class="reveal video-card relative rounded-2xl overflow-hidden aspect-video cursor-pointer group" data-d="2" data-yt="tyWNmlGh6k8">
-        <img src="https://static.tildacdn.com/tild3634-3363-4764-b065-326137316431/maxresdefault_3.jpg" class="w-full h-full object-cover group-hover:opacity-80 transition-opacity" alt="Подкаст 3">
-        <span class="play-btn absolute inset-0 m-auto w-16 h-16 rounded-full bg-black/60 flex items-center justify-center"><svg class="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
-      </div>
-      <div class="reveal video-card relative rounded-2xl overflow-hidden aspect-video cursor-pointer group" data-yt="YUoMdcTSZ4c">
-        <img src="https://static.tildacdn.com/tild3438-3366-4234-b430-313463636234/maxresdefault_1.jpg" class="w-full h-full object-cover group-hover:opacity-80 transition-opacity" alt="Подкаст 4">
-        <span class="play-btn absolute inset-0 m-auto w-16 h-16 rounded-full bg-black/60 flex items-center justify-center"><svg class="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
-      </div>
-      <div class="reveal video-card relative rounded-2xl overflow-hidden aspect-video cursor-pointer group" data-d="1" data-yt="puCUlLyABVY">
-        <img src="https://static.tildacdn.com/tild6563-3961-4761-b661-316132663562/maxresdefault_4.jpg" class="w-full h-full object-cover group-hover:opacity-80 transition-opacity" alt="Подкаст 5">
-        <span class="play-btn absolute inset-0 m-auto w-16 h-16 rounded-full bg-black/60 flex items-center justify-center"><svg class="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
-      </div>
-      <div class="reveal video-card relative rounded-2xl overflow-hidden aspect-video cursor-pointer group" data-d="2" data-yt="H8df6luT4L0">
-        <img src="https://static.tildacdn.com/tild6432-6234-4565-a632-313063643961/yandexpodcast.jpg" class="w-full h-full object-cover group-hover:opacity-80 transition-opacity" alt="Подкаст 6">
-        <span class="play-btn absolute inset-0 m-auto w-16 h-16 rounded-full bg-black/60 flex items-center justify-center"><svg class="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== EQUIPMENT ===== -->
-<section id="equip" class="py-20 px-4">
-  <div class="max-w-7xl mx-auto">
-    <h2 class="reveal font-extrabold text-[clamp(2.2rem,5.5vw,4.8rem)] leading-[0.95] tracking-tight mb-10">Наше оборудование<br/><span class="text-brand">для записи подкаста</span></h2>
-    <div class="reveal flex gap-3 mb-8">
-      <button class="equip-tab px-6 py-3 rounded-full font-semibold bg-brand text-white transition-colors cursor-pointer" data-tab="audio">Аудио</button>
-      <button class="equip-tab px-6 py-3 rounded-full font-semibold bg-white border border-ink/10 text-ink hover:bg-mint transition-colors cursor-pointer" data-tab="video">Видео</button>
-    </div>
-    <div class="reveal" data-d="1">
-      <div class="equip-panel grid md:grid-cols-2 gap-4" data-panel="audio">
-        <div class="rounded-3xl overflow-hidden bg-mint-2 min-h-[360px]"><img src="https://static.tildacdn.com/tild3030-6239-4337-b163-626564633362/Oktava_shure.jpg" class="w-full h-full object-cover" alt="Аудио оборудование"></div>
-        <div class="bg-white border border-ink/8 rounded-3xl p-10 flex flex-col justify-center">
-          <h3 class="font-bold text-2xl mb-4">Аудио</h3>
-          <p class="text-muted leading-relaxed">Мы используем микрофоны брендов <span class="text-brand font-semibold">Октава и Shure</span>, известные во всём мире благодаря безупречному качеству. Также в арсенале ультимативный аудиоинтерфейс Rode Procaster — эталон в подкаст-индустрии.<br/><br/>Всё это позволяет получить приятный басовый звук, без посторонних шумов, с настройками под конкретный голос. Интерфейс даёт возможность быстро получить аудиодорожку — сборную или по отдельным каналам.</p>
-        </div>
-      </div>
-      <div class="equip-panel hidden md:grid-cols-2 gap-4" data-panel="video">
-        <div class="rounded-3xl overflow-hidden bg-mint-2 min-h-[360px]"><img src="https://static.tildacdn.com/tild3938-6338-4630-a331-373731356530/Sony_a640_2.jpg" class="w-full h-full object-cover" alt="Видео оборудование"></div>
-        <div class="bg-white border border-ink/8 rounded-3xl p-10 flex flex-col justify-center">
-          <h3 class="font-bold text-2xl mb-4">Видео</h3>
-          <p class="text-muted leading-relaxed">Парк камер <span class="text-brand font-semibold">Sony</span> a7c и FX-30 с возможностью записи видео в 4K. Видеомикшер Blackmagic ATEM Mini, а также профессиональный видеосвет — качество картинки действительно впечатляет.<br/><br/>Мы помогаем с настройкой света в студии и можем покрасить сырое видео в красивые цвета для получения сочной картинки на выходе.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== PRICING ===== -->
-<section id="pricing" class="py-20 px-4">
-  <div class="max-w-7xl mx-auto">
-    <h2 class="reveal font-extrabold text-[clamp(2.2rem,5.5vw,4.8rem)] leading-[0.95] tracking-tight mb-14">Прозрачно и честно</h2>
-    <div class="grid md:grid-cols-2 gap-6">
-      <div class="reveal card-hover bg-white border border-ink/10 rounded-3xl p-10">
-        <div class="flex items-start justify-between mb-8">
-          <div><h3 class="font-bold text-2xl mb-1">Малый зал</h3><p class="text-muted text-sm">До 3 человек</p></div>
-          <span class="bg-paper text-muted text-xs px-3 py-1.5 rounded-full">Аудио / Видео</span>
-        </div>
-        <div class="space-y-4 mb-10">
-          <div class="flex justify-between items-center py-4 border-b border-ink/8"><span class="font-medium">Аудио запись</span><span class="font-bold text-2xl">от 4 000 ₽<span class="text-muted text-base font-normal">/час</span></span></div>
-          <div class="flex justify-between items-center py-4 border-b border-ink/8"><span class="font-medium">Видео запись</span><span class="font-bold text-2xl">от 6 000 ₽<span class="text-muted text-base font-normal">/час</span></span></div>
-          <div class="flex justify-between items-center pt-2"><span class="text-muted text-sm">Минимум</span><span class="text-muted text-sm">1 час</span></div>
-        </div>
-        <a href="#contact" class="block w-full text-center border border-ink/20 hover:border-ink/50 font-semibold py-4 rounded-full transition-colors duration-200 cursor-pointer">Забронировать</a>
-      </div>
-      <div class="reveal card-hover bg-brand text-white rounded-3xl p-10" data-d="1">
-        <div class="flex items-start justify-between mb-8">
-          <div><h3 class="font-bold text-2xl mb-1 text-white">Большой зал</h3><p class="text-white/60 text-sm">До 6 человек</p></div>
-          <span class="bg-white/20 text-white text-xs px-3 py-1.5 rounded-full">Видео</span>
-        </div>
-        <div class="space-y-4 mb-10">
-          <div class="flex justify-between items-center py-4 border-b border-white/20"><span class="font-medium">Видео запись</span><span class="font-bold text-2xl">от 8 000 ₽<span class="text-white/60 text-base font-normal">/час</span></span></div>
-          <div class="flex justify-between items-center py-4 border-b border-white/20"><span class="font-medium">Постпродакшн</span><span class="text-white/80 text-sm">По запросу</span></div>
-          <div class="flex justify-between items-center pt-2"><span class="text-white/60 text-sm">Минимум</span><span class="text-white/60 text-sm">1 час</span></div>
-        </div>
-        <a href="#contact" class="block w-full text-center bg-white text-brand hover:bg-mint font-semibold py-4 rounded-full transition-colors duration-200 cursor-pointer">Забронировать</a>
-      </div>
-    </div>
-    <p class="reveal text-muted text-sm text-center mt-8">Стоимость указана за студийное время с базовой помощью оператора. Точная цена проекта (монтаж, саунд-дизайн, цветокоррекция, интро/аутро, публикация) рассчитывается индивидуально.</p>
-  </div>
-</section>
-
-<!-- ===== PRODUCTION BANNER ===== -->
-<section class="py-10 px-4">
-  <div class="max-w-7xl mx-auto reveal">
-    <div class="bg-mint rounded-3xl p-8 md:p-12 flex flex-col md:flex-row md:items-center justify-between gap-6">
-      <div>
-        <h3 class="font-extrabold text-2xl md:text-3xl mb-2 tracking-tight">Хотите подкаст? У нас есть полное продюсирование!</h3>
-        <p class="text-ink/70 max-w-2xl">Работаем с проектами от 10 выпусков. Оставьте заявку — и мы позаботимся обо всём. Подкаст вашей мечты на расстоянии одного клика.</p>
-      </div>
-      <a href="https://tonoteam.ru/" target="_blank" rel="noopener" class="magnetic flex-shrink-0 inline-flex items-center gap-2 bg-brand hover:bg-brand-dark text-white font-semibold px-8 py-4 rounded-full transition-colors cursor-pointer">
-        Обсудить проект
-        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H8M17 7v9"/></svg>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ===== TRUSTED LOGOS ===== -->
-<section class="py-16 px-4">
-  <div class="max-w-7xl mx-auto">
-    <h2 class="reveal font-extrabold text-[clamp(2rem,5vw,4rem)] leading-[0.95] tracking-tight text-center mb-12">Нам доверяют <span class="text-brand">свои подкасты</span></h2>
-    <div class="reveal grid grid-cols-3 md:grid-cols-5 lg:grid-cols-9 gap-6 items-center" data-d="1">
-      <img src="https://static.tildacdn.com/tild6535-6530-4462-a436-343162636561/Frame_1-Photoroom.png" class="h-16 w-full object-contain opacity-60 hover:opacity-100 transition-opacity" alt="">
-      <img src="https://static.tildacdn.com/tild6466-6461-4439-b961-343066643832/Frame_2-Photoroom.png" class="h-16 w-full object-contain opacity-60 hover:opacity-100 transition-opacity" alt="">
-      <img src="https://static.tildacdn.com/tild3662-6163-4464-a561-356432366433/Frame_3-Photoroom.png" class="h-16 w-full object-contain opacity-60 hover:opacity-100 transition-opacity" alt="">
-      <img src="https://static.tildacdn.com/tild6631-3333-4663-a434-646261666137/Frame_4-Photoroom.png" class="h-16 w-full object-contain opacity-60 hover:opacity-100 transition-opacity" alt="">
-      <img src="https://static.tildacdn.com/tild3435-3737-4337-b830-393439373730/Frame_5-Photoroom.png" class="h-16 w-full object-contain opacity-60 hover:opacity-100 transition-opacity" alt="">
-      <img src="https://static.tildacdn.com/tild3362-6466-4366-b565-653137393339/Frame_6-Photoroom.png" class="h-16 w-full object-contain opacity-60 hover:opacity-100 transition-opacity" alt="">
-      <img src="https://static.tildacdn.com/tild3735-3962-4337-b835-316631323164/Frame_7-Photoroom.png" class="h-16 w-full object-contain opacity-60 hover:opacity-100 transition-opacity" alt="">
-      <img src="https://static.tildacdn.com/tild3939-6630-4236-a338-353864363665/Frame_8-Photoroom.png" class="h-16 w-full object-contain opacity-60 hover:opacity-100 transition-opacity" alt="">
-      <img src="https://static.tildacdn.com/tild6631-3165-4137-b064-613862663861/Frame_9-Photoroom.png" class="h-16 w-full object-contain opacity-60 hover:opacity-100 transition-opacity" alt="">
+    <p class="eyebrow rv" style="text-align:center;margin:50px 0 24px">нам доверяют свои подкасты</p>
+    <div class="rv" data-d="1" style="display:grid;grid-template-columns:repeat(9,1fr);gap:22px;align-items:center" class="g3">
+      <img src="https://static.tildacdn.com/tild6535-6530-4462-a436-343162636561/Frame_1-Photoroom.png" style="height:40px;width:100%;object-fit:contain;opacity:.55;transition:.25s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.55" alt="">
+      <img src="https://static.tildacdn.com/tild6466-6461-4439-b961-343066643832/Frame_2-Photoroom.png" style="height:40px;width:100%;object-fit:contain;opacity:.55;transition:.25s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.55" alt="">
+      <img src="https://static.tildacdn.com/tild3662-6163-4464-a561-356432366433/Frame_3-Photoroom.png" style="height:40px;width:100%;object-fit:contain;opacity:.55;transition:.25s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.55" alt="">
+      <img src="https://static.tildacdn.com/tild6631-3333-4663-a434-646261666137/Frame_4-Photoroom.png" style="height:40px;width:100%;object-fit:contain;opacity:.55;transition:.25s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.55" alt="">
+      <img src="https://static.tildacdn.com/tild3435-3737-4337-b830-393439373730/Frame_5-Photoroom.png" style="height:40px;width:100%;object-fit:contain;opacity:.55;transition:.25s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.55" alt="">
+      <img src="https://static.tildacdn.com/tild3362-6466-4366-b565-653137393339/Frame_6-Photoroom.png" style="height:40px;width:100%;object-fit:contain;opacity:.55;transition:.25s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.55" alt="">
+      <img src="https://static.tildacdn.com/tild3735-3962-4337-b835-316631323164/Frame_7-Photoroom.png" style="height:40px;width:100%;object-fit:contain;opacity:.55;transition:.25s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.55" alt="">
+      <img src="https://static.tildacdn.com/tild3939-6630-4236-a338-353864363665/Frame_8-Photoroom.png" style="height:40px;width:100%;object-fit:contain;opacity:.55;transition:.25s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.55" alt="">
+      <img src="https://static.tildacdn.com/tild6631-3165-4137-b064-613862663861/Frame_9-Photoroom.png" style="height:40px;width:100%;object-fit:contain;opacity:.55;transition:.25s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.55" alt="">
     </div>
   </div>
 </section>
 
 <!-- ===== FOUNDERS ===== -->
-<section class="py-20 px-4">
-  <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-4 items-stretch">
-    <div class="reveal rounded-3xl overflow-hidden bg-mint-2 min-h-[440px]">
-      <img src="https://static.tildacdn.com/tild3563-6439-4135-b963-343233316561/christinagorod_16062.jpg" class="w-full h-full object-cover" alt="Основатели студии Casty">
+<section class="dark" style="padding:90px 0;overflow:hidden">
+  <div class="wrap" style="display:grid;grid-template-columns:1fr 1.15fr;gap:44px;align-items:center" class="g2">
+    <div class="rv" style="position:relative">
+      <div class="blobimg" style="aspect-ratio:4/5"><img src="https://static.tildacdn.com/tild3563-6439-4135-b963-343233316561/christinagorod_16062.jpg" style="width:100%;height:100%;object-fit:cover" alt="Кристина и Ефим"></div>
+      <span class="hand float" style="position:absolute;bottom:10px;right:-10px;background:var(--orange);color:#fff;padding:8px 18px;border-radius:14px;font-size:25px;transform:rotate(4deg)">Кристина &amp; Ефим</span>
+      <svg class="spark" style="left:-10px;top:20px;width:26px" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2.4 9.6L24 12l-9.6 2.4L12 24l-2.4-9.6L0 12l9.6-2.4z"/></svg>
     </div>
-    <div class="reveal bg-white border border-ink/8 rounded-3xl p-10 md:p-12 flex flex-col justify-center" data-d="1">
-      <h2 class="font-extrabold text-[clamp(1.8rem,3.5vw,3rem)] leading-tight tracking-tight mb-6">Наверное, мы самая дружелюбная студия в Москве <span class="wave">👋</span></h2>
-      <p class="text-muted leading-relaxed mb-6">На самом деле, мы не работаем, чтобы просто заработать. Мы действительно влюблены в подкасты и изучили это направление от и до, что позволило создавать продукт высочайшего качества.<br/><br/>Мы стараемся, чтобы наши гости чувствовали себя расслабленными и настроенными на разговор, не мешаем им, не перебиваем и выключаем всё лишнее оборудование и телефоны в момент записи. Работаем на коннект и создание правильного вайба.</p>
-      <p class="font-bold">Кристина и Ефим.<br/><span class="text-muted font-medium">Основатели студии Casty</span></p>
+    <div class="rv" data-d="1">
+      <p class="eyebrow" style="margin-bottom:14px">основатели</p>
+      <h2 class="serif" style="font-size:clamp(28px,4.4vw,56px);color:var(--cream);line-height:1.2;margin-bottom:22px">Наверное, мы самая дружелюбная студия в Москве <span class="wave" style="font-style:normal">👋</span></h2>
+      <p style="color:rgba(239,233,216,.78);line-height:1.65;font-weight:500;margin-bottom:14px">Мы не работаем, чтобы просто заработать — мы действительно влюблены в подкасты. Стараемся, чтобы гости чувствовали себя расслабленно: не мешаем, не перебиваем, выключаем всё лишнее в момент записи.</p>
+      <p style="color:rgba(239,233,216,.78);line-height:1.65;font-weight:500">Работаем на коннект и создание правильного вайба.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRODUCTION ===== -->
+<section class="light" style="padding:80px 0">
+  <div class="wrap rv">
+    <div style="background:var(--orange);color:#fff;border-radius:var(--r);padding:50px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px;position:relative;overflow:hidden">
+      <div style="position:relative;z-index:1"><h3 class="disp" style="font-size:clamp(26px,4vw,48px);max-width:18ch">Хотите подкаст? Есть полное продюсирование</h3><p style="font-weight:600;margin-top:12px;max-width:56ch;color:rgba(255,255,255,.92)">Работаем с проектами от 10 выпусков. Оставьте заявку — позаботимся обо всём.</p></div>
+      <a href="https://tonoteam.ru/" target="_blank" rel="noopener" class="btn cream magnetic" style="position:relative;z-index:1">Обсудить проект ↗</a>
+      <svg viewBox="0 0 300 50" style="position:absolute;left:32%;bottom:8px;width:220px;opacity:.5"><path style="stroke:#fff;stroke-width:5;fill:none;stroke-linecap:round" d="M5 38 C 80 6,170 6,250 32 S 295 44,297 22"/></svg>
     </div>
   </div>
 </section>
 
 <!-- ===== FAQ ===== -->
-<section id="faq" class="py-20 px-4">
-  <div class="max-w-3xl mx-auto">
-    <h2 class="reveal font-extrabold text-[clamp(2.2rem,5.5vw,4.8rem)] leading-[0.95] tracking-tight mb-12">Вопросы и ответы</h2>
-    <div class="space-y-3">
-      <details class="reveal bg-white border border-ink/8 rounded-2xl hover:border-ink/20 transition-colors" open>
-        <summary class="flex items-center justify-between p-7"><span class="font-semibold">Кому подойдёт наша студия?</span><svg class="faq-icon w-5 h-5 text-muted flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></summary>
-        <p class="px-7 pb-7 text-muted leading-relaxed">Начинающим и опытным подкастерам/блогерам (YouTube, RuTube, VK Видео, Дзен), бизнесу и корпоративным проектам (курсы, вебинары, интервью, «говорящая голова»), продюсерским центрам и медиакомпаниям, инфлюенсерам и экспертам. Универсальное пространство для любых творческих и бизнес-задач с комфортом и качеством.</p>
-      </details>
-      <details class="reveal bg-white border border-ink/8 rounded-2xl hover:border-ink/20 transition-colors">
-        <summary class="flex items-center justify-between p-7"><span class="font-semibold">Какие у вас цены?</span><svg class="faq-icon w-5 h-5 text-muted flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></summary>
-        <p class="px-7 pb-7 text-muted leading-relaxed"><b>Малый зал:</b> аудио — от 4 000 ₽/час, видео — от 6 000 ₽/час.<br/><b>Большой зал:</b> видео — от 8 000 ₽/час.<br/>Минимум 1 час. Стоимость указана за студийное время с базовой помощью оператора. Доп. услуги (монтаж, саунд-дизайн, цветокоррекция, интро/аутро, публикация) рассчитываются индивидуально.</p>
-      </details>
-      <details class="reveal bg-white border border-ink/8 rounded-2xl hover:border-ink/20 transition-colors">
-        <summary class="flex items-center justify-between p-7"><span class="font-semibold">Как быстро можно получить запись? Как долго хранится материал?</span><svg class="faq-icon w-5 h-5 text-muted flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></summary>
-        <p class="px-7 pb-7 text-muted leading-relaxed">Исходники до 2–3 часов обычно готовы уже на следующий рабочий день, объёмные проекты — в течение двух рабочих дней. Файлы хранятся 7 календарных дней с момента предоставления — пожалуйста, скачайте их как можно скорее. Нужно дольше — предупредите заранее.</p>
-      </details>
-      <details class="reveal bg-white border border-ink/8 rounded-2xl hover:border-ink/20 transition-colors">
-        <summary class="flex items-center justify-between p-7"><span class="font-semibold">Предоставляете ли звукорежиссёра? Можно своё оборудование?</span><svg class="faq-icon w-5 h-5 text-muted flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></summary>
-        <p class="px-7 pb-7 text-muted leading-relaxed">Да, в стоимость всегда включена работа нашего опытного сотрудника — поможет настроить оборудование и обеспечит качественную запись. Своё оборудование использовать можно, если оно совместимо с нашей инфраструктурой — обсудите с менеджером при бронировании.</p>
-      </details>
-      <details class="reveal bg-white border border-ink/8 rounded-2xl hover:border-ink/20 transition-colors">
-        <summary class="flex items-center justify-between p-7"><span class="font-semibold">Как подготовиться к записи?</span><svg class="faq-icon w-5 h-5 text-muted flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></summary>
-        <p class="px-7 pb-7 text-muted leading-relaxed">Для видеосъёмки при студийном свете лёгкий макияж очень желателен даже для мужчин. Девушкам — дневной макияж с матированием кожи и лёгким контурингом. Мужчинам — матирующий крем или пудра. У нас есть гримёрная зона с зеркалом и хорошим освещением.</p>
-      </details>
-      <details class="reveal bg-white border border-ink/8 rounded-2xl hover:border-ink/20 transition-colors">
-        <summary class="flex items-center justify-between p-7"><span class="font-semibold">Нужно ли брать сменную обувь?</span><svg class="faq-icon w-5 h-5 text-muted flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></summary>
-        <p class="px-7 pb-7 text-muted leading-relaxed">Если хочется сделать кадры в обуви — возьмите чистую сменку. Залы оборудованы ковровым покрытием для наилучшей акустики, поэтому просим переобуваться. Можно воспользоваться нашими чистыми студийными кроксами. Спасибо за понимание!</p>
-      </details>
-      <details class="reveal bg-white border border-ink/8 rounded-2xl hover:border-ink/20 transition-colors">
-        <summary class="flex items-center justify-between p-7"><span class="font-semibold">Легко ли попасть в студию? Что с парковкой?</span><svg class="faq-icon w-5 h-5 text-muted flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></summary>
-        <p class="px-7 pb-7 text-muted leading-relaxed">Студия в кластере ArtPlay, метро Чкаловская/Курская, в удобной транспортной доступности. Доступ без проходных и пропусков — максимально просто и быстро. На территории действует недорогая охраняемая парковка.</p>
-      </details>
+<section id="faq" class="light" style="padding:20px 0 90px">
+  <div class="wrap" style="max-width:980px">
+    <h2 class="disp rv" style="font-size:clamp(36px,7vw,100px);color:var(--ink);margin-bottom:30px">вопросы &amp; ответы</h2>
+    <div class="faq">
+      <details class="rv" open><summary>кому подойдёт студия?<span class="fi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" d="M12 5v14M5 12h14"/></svg></span></summary><p>Начинающим и опытным подкастерам/блогерам (YouTube, RuTube, VK Видео, Дзен), бизнесу (курсы, вебинары, интервью, «говорящая голова»), продюсерским центрам, инфлюенсерам и экспертам. Универсальное пространство для любых задач.</p></details>
+      <details class="rv"><summary>какие у вас цены?<span class="fi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" d="M12 5v14M5 12h14"/></svg></span></summary><p><b>Малый зал:</b> аудио — от 4 000 ₽/час, видео — от 6 000 ₽/час. <b>Большой зал:</b> видео — от 8 000 ₽/час. Минимум 1 час. Доп. услуги (монтаж, саунд-дизайн, цветокор, интро/аутро, публикация) — индивидуально.</p></details>
+      <details class="rv"><summary>как быстро получу запись и сколько хранится?<span class="fi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" d="M12 5v14M5 12h14"/></svg></span></summary><p>Исходники до 2–3 часов — на следующий рабочий день, объёмные проекты — в течение двух дней. Файлы хранятся 7 календарных дней, скачайте как можно скорее. Нужно дольше — предупредите заранее.</p></details>
+      <details class="rv"><summary>есть звукорежиссёр? можно своё оборудование?<span class="fi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" d="M12 5v14M5 12h14"/></svg></span></summary><p>Да, работа оператора уже включена — поможет настроить оборудование и обеспечит качество. Своё оборудование можно, если совместимо — обсудите с менеджером при бронировании.</p></details>
+      <details class="rv"><summary>как подготовиться к записи?<span class="fi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" d="M12 5v14M5 12h14"/></svg></span></summary><p>Для видеосъёмки лёгкий макияж желателен даже мужчинам. Девушкам — дневной макияж с матированием и лёгким контурингом, мужчинам — матирующий крем/пудра. Есть гримёрная зона с зеркалом и хорошим светом.</p></details>
+      <details class="rv"><summary>нужна ли сменная обувь?<span class="fi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" d="M12 5v14M5 12h14"/></svg></span></summary><p>Если хочется кадров в обуви — возьмите чистую сменку. Залы с ковровым покрытием для лучшей акустики, поэтому просим переобуваться. Есть чистые студийные кроксы.</p></details>
+      <details class="rv"><summary>легко ли попасть? что с парковкой?<span class="fi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" d="M12 5v14M5 12h14"/></svg></span></summary><p>Студия в кластере ArtPlay, метро Чкаловская/Курская. Доступ без проходных и пропусков. На территории — недорогая охраняемая парковка.</p></details>
     </div>
   </div>
 </section>
 
 <!-- ===== CONTACT ===== -->
-<section id="contact" class="py-20 px-4">
-  <div class="max-w-7xl mx-auto">
-    <div class="bg-ink rounded-[40px] overflow-hidden">
-      <div class="grid lg:grid-cols-2">
-        <div class="p-10 md:p-16 text-white">
-          <h2 class="reveal font-extrabold text-[clamp(2.5rem,6vw,5rem)] leading-[0.95] tracking-tight mb-6">Начнём?</h2>
-          <p class="reveal text-white/70 text-lg max-w-md mb-10 leading-relaxed" data-d="1">Напишите нам — ответим быстро, поможем выбрать зал и подберём удобное время. Каждый день с 10:00 до 22:00.</p>
-          <div class="reveal flex flex-col sm:flex-row gap-4 mb-12" data-d="2">
-            <a href="https://t.me/castystudio" target="_blank" rel="noopener" class="magnetic flex items-center justify-center gap-3 bg-brand hover:bg-brand-dark text-white font-semibold px-7 py-4 rounded-full transition-colors cursor-pointer">
-              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-1.97 9.279c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.17 14.015l-2.95-.924c-.643-.204-.657-.643.136-.953l11.526-4.443c.535-.194 1.003.13.68.553z"/></svg>Telegram
-            </a>
-            <a href="https://wa.me/79254059885" target="_blank" rel="noopener" class="magnetic flex items-center justify-center gap-3 bg-white text-ink hover:bg-mint font-semibold px-7 py-4 rounded-full transition-colors cursor-pointer">
-              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.523 5.847L.057 23.18a.5.5 0 00.614.664l5.5-1.438A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.91 0-3.698-.534-5.22-1.457l-.374-.23-3.881 1.016 1.037-3.788-.244-.39A9.956 9.956 0 012 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></svg>WhatsApp
-            </a>
-          </div>
-          <div class="reveal space-y-5 border-t border-white/15 pt-8" data-d="3">
-            <div><div class="text-white/50 text-sm mb-1">Адрес</div><div class="text-white text-sm leading-relaxed">ArtPlay, Нижняя Сыромятническая 10, стр. 9, 3 этаж, офис 329</div><a href="https://disk.yandex.ru/i/kMGJr3d-keAuOQ" target="_blank" rel="noopener" class="text-mint text-sm underline cursor-pointer">Схема прохода в студию</a></div>
-            <div class="flex flex-wrap gap-x-10 gap-y-4">
-              <div><div class="text-white/50 text-sm mb-1">Телефон</div><a href="tel:+79254059885" class="text-white text-sm hover:text-mint transition-colors cursor-pointer">+7 925 405 9885</a></div>
-              <div><div class="text-white/50 text-sm mb-1">Email</div><a href="mailto:hello@casty.ru" class="text-white text-sm hover:text-mint transition-colors cursor-pointer">hello@casty.ru</a></div>
-            </div>
-            <div class="flex gap-3 pt-2">
-              <a href="https://t.me/castystudio" target="_blank" rel="noopener" aria-label="Telegram" class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand transition-colors cursor-pointer"><svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-1.97 9.279c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.17 14.015l-2.95-.924c-.643-.204-.657-.643.136-.953l11.526-4.443c.535-.194 1.003.13.68.553z"/></svg></a>
-              <a href="https://vk.com/casty.studio" target="_blank" rel="noopener" aria-label="VK" class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand transition-colors cursor-pointer"><svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.408 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.862-.525-2.049-1.714-1.033-1.01-1.49-.9-1.49.525v1.19c0 .42-.134.67-1.234.67-1.82 0-3.836-1.1-5.256-3.152C5.765 11.752 5.12 9.19 5.12 8.627c0-.246.098-.476.524-.476h1.744c.39 0 .537.18.687.6.755 2.18 2.02 4.09 2.543 4.09.196 0 .286-.09.286-.582V10.27c-.063-1.047-.614-1.135-.614-1.508 0-.197.16-.394.418-.394h2.745c.33 0 .45.177.45.558v2.991c0 .33.148.447.24.447.196 0 .36-.117.72-.48 1.115-1.248 1.91-3.17 1.91-3.17.106-.244.3-.47.69-.47h1.742c.524 0 .637.27.524.6-.217.995-2.327 3.99-2.327 3.99-.183.3-.248.434 0 .764.18.247.765.758 1.157 1.22.718.83 1.268 1.527 1.416 2.01.133.475-.13.717-.538.717z"/></svg></a>
-              <a href="https://www.instagram.com/casty.studio/" target="_blank" rel="noopener" aria-label="Instagram*" class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand transition-colors cursor-pointer"><svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 01-1.38-.9 3.7 3.7 0 01-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.3-1.46.72-2.12 1.38C1.36 2.67.94 3.34.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.72 1.46 1.38 2.12.66.66 1.33 1.08 2.12 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.3 1.46-.72 2.12-1.38.66-.66 1.08-1.33 1.38-2.12.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.7 5.7 0 00-1.38-2.12A5.7 5.7 0 0019.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 100 12.32 6.16 6.16 0 000-12.32zM12 16a4 4 0 110-8 4 4 0 010 8zm6.4-10.85a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"/></svg></a>
-            </div>
-          </div>
+<section id="contact" class="deep" style="padding:90px 0">
+  <div class="wrap">
+    <div style="display:grid;grid-template-columns:1fr 1.1fr;gap:30px;align-items:stretch" class="g2">
+      <div class="rv">
+        <p class="eyebrow" style="margin-bottom:14px">контакты · 10:00–22:00</p>
+        <h2 class="disp" style="font-size:clamp(48px,10vw,130px);color:var(--cream);margin-bottom:18px">начнём?</h2>
+        <p style="color:rgba(239,233,216,.78);font-weight:500;line-height:1.6;max-width:42ch;margin-bottom:28px">Напишите нам — ответим быстро, поможем выбрать зал и подберём удобное время.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:32px">
+          <a href="https://t.me/castystudio" target="_blank" rel="noopener" class="btn magnetic">Telegram</a>
+          <a href="https://wa.me/79254059885" target="_blank" rel="noopener" class="btn cream magnetic">WhatsApp</a>
         </div>
-        <div class="min-h-[400px] lg:min-h-full">
-          <iframe src="https://yandex.ru/map-widget/v1/?lang=ru_RU&scroll=false&source=constructor-api&um=constructor%3A6837d31f1e6fec17324816f896e2ec703a27afee3e063e83dc54cd49384dd503" class="w-full h-full min-h-[400px]" frameborder="0" allowfullscreen="true" title="Карта"></iframe>
+        <div style="border-top:2px solid rgba(239,233,216,.2);padding-top:24px;display:flex;flex-direction:column;gap:16px">
+          <div><div class="label" style="color:var(--orange)">адрес</div><div style="font-weight:600;margin-top:5px;line-height:1.4">ArtPlay, Нижняя Сыромятническая 10, стр. 9, 3 этаж, офис 329</div><a href="https://disk.yandex.ru/i/kMGJr3d-keAuOQ" target="_blank" rel="noopener" style="color:var(--orange);font-weight:700;text-decoration:underline;font-size:14px">Схема прохода →</a></div>
+          <div style="display:flex;gap:36px;flex-wrap:wrap">
+            <div><div class="label" style="color:var(--orange)">телефон</div><a href="tel:+79254059885" style="font-weight:700;font-size:17px">+7 925 405 9885</a></div>
+            <div><div class="label" style="color:var(--orange)">email</div><a href="mailto:hello@casty.ru" style="font-weight:700;font-size:17px">hello@casty.ru</a></div>
+          </div>
         </div>
       </div>
+      <div class="rv" data-d="1" style="border-radius:var(--r);overflow:hidden;min-height:480px"><iframe src="https://yandex.ru/map-widget/v1/?lang=ru_RU&scroll=false&source=constructor-api&um=constructor%3A6837d31f1e6fec17324816f896e2ec703a27afee3e063e83dc54cd49384dd503" style="width:100%;height:100%;min-height:480px;border:0" allowfullscreen title="Карта Casty"></iframe></div>
     </div>
   </div>
 </section>
 
 <!-- ===== FOOTER ===== -->
-<footer class="px-4 py-12">
-  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-    <img src="https://static.tildacdn.com/tild6538-6436-4534-b832-343063306231/logoocarty.svg" alt="Casty" class="h-9 w-auto" />
-    <p class="text-muted text-sm text-center">© Сделано в Casty · Студия записи подкастов в Москве · ArtPlay</p>
-    <div class="flex flex-wrap gap-x-6 gap-y-2 text-muted text-xs justify-center">
-      <a href="https://casty.ru/privacy" target="_blank" rel="noopener" class="hover:text-ink transition-colors cursor-pointer">Политика конфиденциальности</a>
-      <a href="https://casty.ru/offerta" target="_blank" rel="noopener" class="hover:text-ink transition-colors cursor-pointer">Публичная оферта</a>
+<footer class="dark" style="padding:60px 0 30px;border-top:2px solid rgba(239,233,216,.15)">
+  <div class="wrap">
+    <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:36px;margin-bottom:36px" class="g3">
+      <div><img src="https://static.tildacdn.com/tild3330-3739-4230-b662-643863666461/Frame_438.svg" alt="Casty" style="height:30px;filter:brightness(0) invert(1);margin-bottom:14px"/><p style="color:rgba(239,233,216,.6);font-weight:500;max-width:34ch">Студия записи аудио и видео подкастов в Москве. От записи до публикации.</p></div>
+      <div><p class="label" style="color:var(--orange);margin-bottom:14px">меню</p><ul style="list-style:none;display:flex;flex-direction:column;gap:10px;font-weight:600"><li><a href="#features">О нас</a></li><li><a href="#halls">Залы</a></li><li><a href="#works">Работы</a></li><li><a href="#contact">Контакты</a></li></ul></div>
+      <div><p class="label" style="color:var(--orange);margin-bottom:14px">контакты</p><ul style="list-style:none;display:flex;flex-direction:column;gap:10px;font-weight:600"><li><a href="tel:+79254059885">+7 925 405 9885</a></li><li><a href="mailto:hello@casty.ru">hello@casty.ru</a></li><li><a href="https://t.me/castystudio" target="_blank" rel="noopener">Telegram</a> · <a href="https://vk.com/casty.studio" target="_blank" rel="noopener">VK</a> · <a href="https://wa.me/79254059885" target="_blank" rel="noopener">WhatsApp</a></li></ul></div>
     </div>
+    <div style="border-top:1px solid rgba(239,233,216,.15);padding-top:22px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;color:rgba(239,233,216,.5);font-size:13px;font-weight:500">
+      <span>© <span id="year">2025</span> Casty · ArtPlay, Москва</span>
+      <span style="display:flex;gap:16px"><a href="https://casty.ru/privacy" target="_blank" rel="noopener">Политика</a><a href="https://casty.ru/offerta" target="_blank" rel="noopener">Оферта</a></span>
+    </div>
+    <p style="color:rgba(239,233,216,.35);font-size:11px;margin-top:16px">*Meta (Instagram) признана экстремистской организацией и запрещена на территории РФ.</p>
   </div>
-  <p class="max-w-7xl mx-auto text-muted/50 text-[11px] mt-6 text-center md:text-left">*Meta (Instagram) признана экстремистской организацией и запрещена на территории России.</p>
 </footer>
 
-<!-- ===== VIDEO LIGHTBOX ===== -->
-<div id="lightbox" class="fixed inset-0 z-[100] bg-black/85 backdrop-blur-sm hidden items-center justify-center p-4">
-  <button id="lb-close" class="absolute top-6 right-6 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white cursor-pointer" aria-label="Закрыть"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></button>
-  <div class="w-full max-w-4xl aspect-video"><div id="lb-frame" class="w-full h-full rounded-2xl overflow-hidden"></div></div>
-</div>
+<div id="lb"><button id="lbx" class="btn cream" style="position:absolute;top:20px;right:20px">✕ Закрыть</button><div style="width:100%;max-width:960px;aspect-ratio:16/9"><div id="lbf" style="width:100%;height:100%;border-radius:16px;overflow:hidden"></div></div></div>
 
 <script>
 (function(){
-  // ---- scroll reveal ----
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
-  }, {threshold:.12});
-  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
+  document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
 
-  // ---- nav hide on scroll down ----
-  var nav=document.getElementById('nav'), last=0;
-  window.addEventListener('scroll', function(){
-    var y=window.pageYOffset;
-    if(y>last && y>200) nav.classList.add('hidden-nav'); else nav.classList.remove('hidden-nav');
-    last=y;
-  });
+  var nav=document.querySelector('.nav'),last=0;
+  window.addEventListener('scroll',function(){var y=scrollY;nav.classList.toggle('scrolled',y>40);if(y>last&&y>240)nav.classList.add('hide');else nav.classList.remove('hide');last=y;});
 
-  // ---- sliders ----
+  var burger=document.querySelector('.burger'),links=document.querySelector('.nav-links');
+  burger.addEventListener('click',function(){burger.classList.toggle('open');links.classList.toggle('open');});
+  links.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){burger.classList.remove('open');links.classList.remove('open');});});
+
   document.querySelectorAll('[data-slider]').forEach(function(box){
-    var id=box.getAttribute('data-slider');
-    var track=box.querySelector('.slider-track');
-    var slides=track.children, total=slides.length, idx=0;
-    var dotsWrap=document.querySelector('.slider-dots[data-target="'+id+'"]');
-    for(var i=0;i<total;i++){
-      var d=document.createElement('button');
-      d.className='w-2.5 h-2.5 rounded-full bg-ink/20 transition-all cursor-pointer';
-      d.dataset.i=i;
-      dotsWrap.appendChild(d);
-    }
-    function go(n){
-      idx=(n+total)%total;
-      track.style.transform='translateX(-'+(idx*100)+'%)';
-      dotsWrap.querySelectorAll('button').forEach(function(b,k){
-        b.className='h-2.5 rounded-full transition-all cursor-pointer '+(k===idx?'w-7 bg-brand':'w-2.5 bg-ink/20');
-      });
-    }
-    dotsWrap.addEventListener('click',function(e){ if(e.target.dataset.i!==undefined) go(+e.target.dataset.i); });
-    document.querySelector('.slider-next[data-target="'+id+'"]').addEventListener('click',function(){go(idx+1)});
-    document.querySelector('.slider-prev[data-target="'+id+'"]').addEventListener('click',function(){go(idx-1)});
-    // swipe
-    var sx=0;
-    box.addEventListener('touchstart',function(e){sx=e.touches[0].clientX},{passive:true});
-    box.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-sx; if(Math.abs(dx)>40) go(idx+(dx<0?1:-1));},{passive:true});
-    // autoplay
-    var t=setInterval(function(){go(idx+1)},5000);
-    box.addEventListener('mouseenter',function(){clearInterval(t)});
+    var id=box.dataset.slider,track=box.querySelector('.strack'),n=track.children.length,i=0;
+    var dots=document.querySelector('.dots[data-t="'+id+'"]');
+    for(var k=0;k<n;k++){var b=document.createElement('button');b.dataset.i=k;dots.appendChild(b);}
+    function go(x){i=(x+n)%n;track.style.transform='translateX(-'+i*100+'%)';dots.querySelectorAll('button').forEach(function(b,j){b.classList.toggle('on',j===i);});}
+    dots.addEventListener('click',function(e){if(e.target.dataset.i!==undefined)go(+e.target.dataset.i);});
+    document.querySelector('.snav-next[data-t="'+id+'"]').addEventListener('click',function(){go(i+1);});
+    document.querySelector('.snav-prev[data-t="'+id+'"]').addEventListener('click',function(){go(i-1);});
+    var sx=0;box.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;},{passive:true});
+    box.addEventListener('touchend',function(e){var d=e.changedTouches[0].clientX-sx;if(Math.abs(d)>40)go(i+(d<0?1:-1));},{passive:true});
+    var t=setInterval(function(){go(i+1);},5500);box.addEventListener('mouseenter',function(){clearInterval(t);});
     go(0);
   });
 
-  // ---- equipment tabs ----
-  var tabs=document.querySelectorAll('.equip-tab'), panels=document.querySelectorAll('.equip-panel');
-  tabs.forEach(function(tab){
-    tab.addEventListener('click',function(){
-      var t=tab.dataset.tab;
-      tabs.forEach(function(x){ x.className='equip-tab px-6 py-3 rounded-full font-semibold bg-white border border-ink/10 text-ink hover:bg-mint transition-colors cursor-pointer'; });
-      tab.className='equip-tab px-6 py-3 rounded-full font-semibold bg-brand text-white transition-colors cursor-pointer';
-      panels.forEach(function(p){
-        if(p.dataset.panel===t){ p.classList.remove('hidden'); p.classList.add('grid'); }
-        else { p.classList.add('hidden'); p.classList.remove('grid'); }
-      });
-    });
+  // tabs (generic, supports panel-group)
+  document.querySelectorAll('[data-tabs]').forEach(function(bar){
+    var key=bar.dataset.tabs,tabs=bar.querySelectorAll('[data-tab]');
+    var group=document.querySelector('[data-panel-group="'+key+'"]');
+    tabs.forEach(function(tab){tab.addEventListener('click',function(){
+      tabs.forEach(function(x){x.classList.add('outline');x.classList.remove('active');if(x.classList.contains('btn')&&bar.closest('.deep')){x.classList.add('ghost');}});
+      tab.classList.remove('outline');tab.classList.remove('ghost');tab.classList.add('active');
+      if(group)group.querySelectorAll('[data-panel]').forEach(function(p){p.style.display=p.dataset.panel===tab.dataset.tab?'':'none';});
+    });});
   });
 
-  // ---- video lightbox ----
-  var lb=document.getElementById('lightbox'), frame=document.getElementById('lb-frame');
-  document.querySelectorAll('.video-card').forEach(function(c){
-    c.addEventListener('click',function(){
-      var yt=c.dataset.yt;
-      frame.innerHTML='<iframe class="w-full h-full" src="https://www.youtube.com/embed/'+yt+'?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
-      lb.classList.remove('hidden'); lb.classList.add('flex'); document.body.style.overflow='hidden';
-    });
-  });
-  function closeLb(){ lb.classList.add('hidden'); lb.classList.remove('flex'); frame.innerHTML=''; document.body.style.overflow=''; }
-  document.getElementById('lb-close').addEventListener('click',closeLb);
-  lb.addEventListener('click',function(e){ if(e.target===lb) closeLb(); });
-  document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeLb(); });
+  var lb=document.getElementById('lb'),lbf=document.getElementById('lbf');
+  document.querySelectorAll('.vcard[data-yt]').forEach(function(c){c.addEventListener('click',function(){
+    lbf.innerHTML='<iframe style="width:100%;height:100%;border:0" src="https://www.youtube.com/embed/'+c.dataset.yt+'?autoplay=1" allow="autoplay;encrypted-media" allowfullscreen></iframe>';
+    lb.classList.add('show');document.body.style.overflow='hidden';});});
+  function cl(){lb.classList.remove('show');lbf.innerHTML='';document.body.style.overflow='';}
+  document.getElementById('lbx').addEventListener('click',cl);lb.addEventListener('click',function(e){if(e.target===lb)cl();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')cl();});
 
-  // ---- magnetic buttons ----
-  if(window.matchMedia('(pointer:fine)').matches){
-    document.querySelectorAll('.magnetic').forEach(function(el){
-      el.addEventListener('mousemove',function(e){
-        var r=el.getBoundingClientRect();
-        var x=e.clientX-r.left-r.width/2, y=e.clientY-r.top-r.height/2;
-        el.style.transform='translate('+x*0.3+'px,'+y*0.3+'px)';
-      });
-      el.addEventListener('mouseleave',function(){ el.style.transform=''; });
-    });
-  }
+  if(matchMedia('(pointer:fine)').matches){document.querySelectorAll('.magnetic').forEach(function(el){
+    el.addEventListener('mousemove',function(e){var r=el.getBoundingClientRect();el.style.transform='translate('+(e.clientX-r.left-r.width/2)*.28+'px,'+(e.clientY-r.top-r.height/2)*.28+'px)';});
+    el.addEventListener('mouseleave',function(){el.style.transform='';});});}
+
+  document.getElementById('year').textContent=new Date().getFullYear();
 })();
 </script>
 </body>
